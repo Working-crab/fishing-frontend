@@ -1,9 +1,9 @@
 <script>
-  import logo from './assets/svelte.png'
+  import NavBar from './lib/NavBar.svelte';
 </script>
 
 <main>
-  <img src={logo} alt="Svelte Logo" />
+  <NavBar />
   <h1>Hello world!</h1>
 </main>
 
@@ -13,15 +13,16 @@
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
-  main {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
+  :global(body) {
+    margin: 0;
+    padding: 0;
   }
 
-  img {
-    height: 16rem;
-    width: 16rem;
+  main {
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
   }
 
   h1 {
