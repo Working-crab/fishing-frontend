@@ -3,7 +3,7 @@
     import Logo from '../assets/images/logo.png'
     import SearchIcon from '../assets/images/Search.svg'
     import HeartIcon from '../assets/images/Heart.svg'
-    import CartIcon from '../assets/images/Vector.svg'
+    import CartIcon from '../assets/images/Cart.svg'
     import UserIcon from '../assets/images/Person.svg'
 </script>
 
@@ -52,9 +52,10 @@
     }
 
     .container-header {
-        height: 80px;
         display: flex;
+        justify-content: space-between;
         align-items: center;
+        height: 80px;
     }
 
     .logo-img {
@@ -63,7 +64,6 @@
     }
 
     .search-container{
-        margin: 0 112px;
         width: 650px;
         height:50px;
         position: relative;

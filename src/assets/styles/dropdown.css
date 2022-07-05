@@ -1,0 +1,51 @@
+.dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-input {
+    cursor: pointer;
+    width: 100%;
+}
+
+.dropdown-arrow {
+    opacity: 0.35;
+    cursor: pointer;
+    transition: transform .5s ease;
+}
+
+.dropdown-arrow--active {
+    transform: rotate(180deg);
+    transition: transform .5s ease;
+}
+
+.dropdown-menu {
+    display: none;
+    width: 100%;
+    max-height: 150px;
+    background-color: #F8F8F8;
+    border-radius: 0 0 5px 5px;
+    padding-top: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.dropdown-menu-item {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    padding: 5px 10px;
+    line-height: 22px;
+}
+
+.dropdown-menu-item:hover {
+    background-color: #ececec;
+}
+
+.dropdown-menu--active {
+    position: absolute;
+    top: 99%; left: 0;
+    display: block;
+    z-index: 1;
+}

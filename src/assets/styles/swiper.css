@@ -1,0 +1,57 @@
+.swiper {
+    padding: 5px 0!important;
+}
+
+.swiper-wrapper {
+    padding: 0 45px;
+}
+
+.swiper-button-prev,
+.swiper-rtl .swiper-button-next {
+    left: 0!important;
+    right: auto!important;
+}
+
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+    left: auto!important;
+    right: 0!important;
+}
+
+.swiper-button-prev::after,
+.swiper-rtl .swiper-button-next::after {
+    content: ''!important;
+    font-family: unset!important;
+    width: 30px;
+    height: 30px;
+    background-image: url('../images/Arrow.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.swiper-button-next::after,
+.swiper-rtl .swiper-button-prev::after {
+    content: ''!important;
+    font-family: unset!important;
+    width: 30px;
+    height: 30px;
+    background-image: url('../images/Arrow.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.swiper-button-prev {
+    transform: rotate(90deg);
+}
+
+.swiper-button-next {
+    transform: rotate(-90deg);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    width: 30px!important;
+    opacity: 0.35;
+}

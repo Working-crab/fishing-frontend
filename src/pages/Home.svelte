@@ -12,9 +12,3 @@
         <Stuffs />
     </article>
 </Router>
-
-<style scoped>
-    .stuffs {
-        display: flex;
-    }
-</style>
