@@ -13,28 +13,8 @@
   import JackallIcon from '../assets/images/brands/Jackall.png';
   import ShimanoIcon from '../assets/images/brands/Shimano.png';
   import SunlineIcon from '../assets/images/brands/Sunline.png';
-  import HeartIcon from '../assets/images/Heart.svg';
-  import CartIcon from '../assets/images/Cart.svg';
   import RodImage from '../assets/images/rod.png';
-
-  // todo: optimize this code
-  function priceFormat(value) {
-    let regExp;
-
-    switch(value.length) {
-      case 4:
-        regExp = /\d{1}/;
-        return value.replace(regExp, `${value[0]} `);
-      case 5:
-        regExp = /\d{2}/;
-        return value.replace(regExp, `${value[0]}${value[1]} `);
-      case 6:
-        regExp = /\d{3}/;
-        return value.replace(regExp, `${value[0]}${value[1]}${value[2]} `);
-      default:
-        return value;
-    }
-  }
+  import StuffFooter from './StuffFooter.svelte';
 
   let options = [
     {id: 1, value: 'val'},
@@ -73,6 +53,22 @@
     //   price: '13999',
     // },
   ];
+
+  import { stuffModal, stuffModalJSON } from '../stores';
+
+  const showStuffInfo = (stuff) => {
+    stuffModal.update(item => {
+      return {
+        id: stuff.id,
+        images: [],
+        title: stuff.title,
+        description: '',
+        properties: [],
+        rating: 0,
+        price: ''
+      }
+    })
+  }
 </script>
 
 <div class="stuffs-wrapper">
@@ -138,23 +134,15 @@
   <ul class="stuffs-list">
     {#each stuffs as stuff}
       <li class="stuffs-list-item">
-        <div class="stuffs-list-info">
+        <div on:click={() => showStuffInfo(stuff)} class="stuffs-list-info">
           <div class="stuffs-list-info-image">
             <img src={stuff.image} alt="" />
           </div>
           <h3 class="stuffs-list-info-title">{stuff.title}</h3>
         </div>
-        <div class="stuffs-list-controls">
-          <button class="stuffs-list-controls-button button">
-            <img src={HeartIcon} alt="" />
-          </button>
-          <h3 class="stuffs-list-controls-price">
-            <span>{priceFormat(stuff.price)} ₽</span>
-          </h3>
-          <button class="stuffs-list-controls-button button">
-            <img src={CartIcon} alt="" />
-          </button>
-        </div>
+        <StuffFooter
+          stuff={stuff}
+        />
       </li>
     {/each}
   </ul>

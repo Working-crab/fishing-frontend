@@ -1,0 +1,49 @@
+.rating {
+    
+}
+
+.rating-title {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 5px;
+}
+
+.rating-stars {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating-stars-item {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.rating-stars-item + .rating-stars-item {
+    margin-left: 5px;
+}
+
+.rating-stars-item svg {
+    width: 100%;
+    height: 100%;
+    fill: #000;
+}
+
+.rating-stars-item:hover svg {
+    fill: #2D75E1;
+}
+
+.rating-stars-count {
+    font-size: 12px;
+    margin-left: 10px;
+    opacity: 0.35;
+}
+
+.rating-link {
+    font-size: 12px;
+    text-decoration: underline!important;
+    opacity: 0.75;
+}

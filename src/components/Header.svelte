@@ -21,7 +21,7 @@
         <nav class="header-nav">
             <ul class="header-nav-list">
                 <li class="header-nav-list-item">
-                    <Link to="/" class="header-nav-list-link link">
+                    <Link to="/favorites" class="header-nav-list-link link">
                         <img src={HeartIcon} alt="">
                         <p class="header-nav-list-text">Избранное</p>
                     </Link>
@@ -33,7 +33,7 @@
                     </Link>
                 </li>
                 <li class="header-nav-list-item">
-                    <Link to="/" class="header-nav-list-link link">
+                    <Link to="/auth" class="header-nav-list-link link">
                         <img src={UserIcon} alt="">
                         <p class="header-nav-list-text">Войти</p>
                     </Link>
