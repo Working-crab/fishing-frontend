@@ -5,6 +5,16 @@
     import HeartIcon from '../assets/images/Heart.svg'
     import CartIcon from '../assets/images/Cart.svg'
     import UserIcon from '../assets/images/Person.svg'
+
+    import { regModal } from '../stores';
+
+    const showAuthModal = () =>{
+        regModal.update(modal => {
+            return {
+                ...modal, isVisible: true
+            }
+        });
+    } 
 </script>
 
 <header class="header">
@@ -33,10 +43,11 @@
                     </Link>
                 </li>
                 <li class="header-nav-list-item">
-                    <Link to="/auth" class="header-nav-list-link link">
+                    <!--TODO: преименовать класс header-nav-list-link link и link -->
+                     <div on:click={showAuthModal} class="header-nav-list-link link">
                         <img src={UserIcon} alt="">
                         <p class="header-nav-list-text">Войти</p>
-                    </Link>
+                    </div> 
                 </li>
             </ul>
         </nav>

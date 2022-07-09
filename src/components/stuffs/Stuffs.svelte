@@ -5,16 +5,16 @@
   import 'swiper/css';
   import 'swiper/css/navigation';
 
-  import InputCounter from './InputCounter.svelte';
-  import InputSelect from './InputSelect.svelte';
+  import InputCounter from '../InputCounter.svelte';
+  import InputSelect from '../InputSelect.svelte';
 
-  import AbugarciaIcon from '../assets/images/brands/AbuGarcia.png';
-  import DIcon from '../assets/images/brands/D.png';
-  import JackallIcon from '../assets/images/brands/Jackall.png';
-  import ShimanoIcon from '../assets/images/brands/Shimano.png';
-  import SunlineIcon from '../assets/images/brands/Sunline.png';
-  import RodImage from '../assets/images/rod.png';
-  import StuffFooter from './StuffFooter.svelte';
+  import AbugarciaIcon from '../../assets/images/brands/AbuGarcia.png';
+  import DIcon from '../../assets/images/brands/D.png';
+  import JackallIcon from '../../assets/images/brands/Jackall.png';
+  import ShimanoIcon from '../../assets/images/brands/Shimano.png';
+  import SunlineIcon from '../../assets/images/brands/Sunline.png';
+  import RodImage from '../../assets/images/rod.png';
+  import StuffFooter from '../stuffs/StuffFooter.svelte';
 
   let options = [
     {id: 1, value: 'val'},
@@ -54,7 +54,7 @@
     // },
   ];
 
-  import { stuffModal, stuffModalJSON } from '../stores';
+  import { stuffModal, stuffModalJSON } from '../../stores';
 
   const showStuffInfo = (stuff) => {
     stuffModal.update(item => {

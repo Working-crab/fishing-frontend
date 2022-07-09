@@ -1,7 +1,7 @@
 <script>
     import { Router } from "svelte-routing";
-    import Stuffs from '../components/Stuffs.svelte';
-    import StuffMenu from '../components/StuffMenu.svelte';
+    import Stuffs from '../components/stuffs/Stuffs.svelte';
+    import StuffMenu from '../components/stuffs/StuffMenu.svelte';
 
     export let url = "";
 </script>

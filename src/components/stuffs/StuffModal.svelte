@@ -1,11 +1,10 @@
 <script>
     import StuffFooter from "./StuffFooter.svelte";
-    import StarIcon from '../assets/images/Star.svg';
 
-    import RodImage from '../assets/images/rod.png';
-    import ImagesCarousel from "./ImagesCarousel.svelte";
+    import RodImage from '../../assets/images/rod.png';
+    import ImagesCarousel from "../ImagesCarousel.svelte";
 
-    import { stuffModal, stuffModalJSON } from '../stores';
+    import { stuffModal, stuffModalJSON } from '../../stores';
 
     const handleBlackoverClick = () => {
         // reset stuffModal props for hide modal

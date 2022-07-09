@@ -1,12 +1,12 @@
 <script>
     import { Link } from "svelte-routing";
-    import FishingRodIcon from "../assets/images/Fishing_Rod.svg";
-    import FishingLinesIcon from "../assets/images/Fishing_Lines.svg";
-    import CoilIcon from "../assets/images/Coil.svg";
-    import HookIcon from "../assets/images/Hook.svg";
-    import BiteIcon from "../assets/images/Bite.svg";
-    import MountingIcon from "../assets/images/Mounting.svg";
-    import FishingNetIcon from "../assets/images/Fishing_Net.svg";
+    import FishingRodIcon from "../../assets/images/Fishing_Rod.svg";
+    import FishingLinesIcon from "../../assets/images/Fishing_Lines.svg";
+    import CoilIcon from "../../assets/images/Coil.svg";
+    import HookIcon from "../../assets/images/Hook.svg";
+    import BiteIcon from "../../assets/images/Bite.svg";
+    import MountingIcon from "../../assets/images/Mounting.svg";
+    import FishingNetIcon from "../../assets/images/Fishing_Net.svg";
 </script>
 
 <div class="stuffs-menu">
