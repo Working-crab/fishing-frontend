@@ -6,10 +6,10 @@
     import CartIcon from '../assets/images/Cart.svg'
     import UserIcon from '../assets/images/Person.svg'
 
-    import { regModal } from '../stores';
+    import { authModal } from '../stores';
 
     const showAuthModal = () =>{
-        regModal.update(modal => {
+        authModal.update(modal => {
             return {
                 ...modal, isVisible: true
             }
