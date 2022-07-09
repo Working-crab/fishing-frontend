@@ -15,11 +15,19 @@ const showAuthModal = () =>{
             ...modal, isVisible: true
         }
     });
-} 
+};
+
+const closeModal = () =>{
+    regModal.update(modal => {
+        return {
+            ...modal, isVisible: false
+        }
+    });
+};
 </script>
 
 <div class="reg-wrapper">
-    <div class="blackover"></div>
+    <div on:click={closeModal} class="blackover"></div>
     <form class="reg-form" action="">
         <div class="title-container">
             <div class="logo-img">

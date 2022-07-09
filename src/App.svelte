@@ -41,7 +41,6 @@
     resetPassModaStore = context;
   });
 
-
   export let url = "";
 </script>
 

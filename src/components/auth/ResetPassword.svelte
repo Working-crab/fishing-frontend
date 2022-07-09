@@ -16,10 +16,18 @@
             }
         });
     }
+
+    const closeModal = () =>{
+        resetPassModal.update(modal => {
+            return {
+                ...modal, isVisible: false
+            }
+        });
+    };
 </script>
 
 <div class="reset-pass-wrapper">
-    <div class="blackover"></div>
+    <div on:click={closeModal} class="blackover"></div>
     <form class="reset-pass-form" action="">
         <div class="title-container">
             <div class="logo-img">
@@ -27,7 +35,7 @@
             </div>
             <h1>Восстановление пароля</h1>
         </div>
-        <input class="input reset-pass-form-input" placeholder="E-mail" type="text">
+        <input class="input reset-pass-form-input" placeholder="E-mail" type="email">
         <span class="message-prompt">На указанную электронную почту придёт письмо с восстановлением пароля</span>
         <div class="reset-pass-footer">
             <span on:click={showResetPassModal}>Авторизация</span>

@@ -18,6 +18,14 @@
         });
     }
 
+    const closeModal = () =>{
+        authModal.update(modal => {
+            return {
+                ...modal, isVisible: false
+            }
+        });
+    };
+
     const showResetPassModal = () =>{
         regModal.update(modal => {
             return {
@@ -34,11 +42,11 @@
                 ...modal, isVisible: true
             }
         })
-    } 
+    }
 </script>
 
 <div class="auth-wrapper">
-    <div class="blackover"></div>
+    <div on:click={closeModal} class="blackover"></div>
     <form class="auth-form" action="">
         <div class="title-container">
             <div class="logo-img">
@@ -46,14 +54,14 @@
             </div>
             <h1>Авторизация</h1>
         </div>
-        <input class="input auth-form-input" placeholder="E-mail" type="text">
+        <input class="input auth-form-input" placeholder="E-mail" type="email">
         <input class="input auth-form-input" placeholder="пароль" type="password">
         <div class="forgot-password-container">
             <span on:click={showResetPassModal}>Забыли пароль?</span>
         </div>
         <div class="auth-footer">
             <span on:click={showRegModal}>Регистрация</span>
-            <button class="btn">Регистрация</button>
+            <button class="btn">Войти</button>
         </div>
     </form>
 </div>
