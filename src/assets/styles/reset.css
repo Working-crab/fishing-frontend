@@ -1,0 +1,65 @@
+.reset-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.reset-title-logo {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.reset-title-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.reset-title-text {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.reset-input {
+  margin-bottom: 10px;
+}
+
+.reset-prompt {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .5);
+}
+
+.reset-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+}
+
+.reset-footer-link {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  line-height: 19px;
+  color: #2D75E1;
+  cursor: pointer;
+}
+
+.reset-footer-button {
+  width: 150px;
+  height: 40px;
+  background-color: #2D75E1!important;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #FFF;
+  cursor: pointer;
+}

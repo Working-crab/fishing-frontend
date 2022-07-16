@@ -24,13 +24,27 @@
 
         initialValue++;
     }
+
+    const handleInput = (e) => {
+        if(e.target.value > maxValue) {
+            
+        }
+    }
 </script>
 
 <div class="{className} counter">
     <button on:click|preventDefault={buttonMinusHandler} class="counter-button button">
         <img src={MinusIcon} alt="" />
     </button>
-    <input type="number" name="{name}" class="{inputClassName} input counter-input" id="{name}" value="{initialValue ? initialValue : 0}">
+    <input 
+        on:input={(e) => handleInput(e)}
+        min={minValue} 
+        max={maxValue} 
+        type="number" 
+        name={name} 
+        class={`${inputClassName} input counter-input`} id={name} 
+        value={`${initialValue ? initialValue : 0}`}
+    >
     <button on:click|preventDefault={buttonPlusHandler} class="counter-button button">
         <img src={PlusIcon} alt="" />
     </button>

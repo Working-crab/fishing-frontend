@@ -5,8 +5,7 @@
   import 'swiper/css';
   import 'swiper/css/navigation';
 
-  import InputCounter from '../InputCounter.svelte';
-  import InputSelect from '../InputSelect.svelte';
+  import StuffsList from './StuffsList.svelte';
 
   import AbugarciaIcon from '../../assets/images/brands/AbuGarcia.png';
   import DIcon from '../../assets/images/brands/D.png';
@@ -14,7 +13,7 @@
   import ShimanoIcon from '../../assets/images/brands/Shimano.png';
   import SunlineIcon from '../../assets/images/brands/Sunline.png';
   import RodImage from '../../assets/images/rod.png';
-  import StuffFooter from '../stuffs/StuffFooter.svelte';
+  import StuffsSort from './StuffsSort.svelte';
 
   let options = [
     {id: 1, value: 'val'},
@@ -46,29 +45,13 @@
       title: 'Удилище',
       price: '13999',
     },
-    // {
-    //   id: 4,
-    //   image: null,
-    //   title: 'Удилище',
-    //   price: '13999',
-    // },
+    {
+      id: 4,
+      image: null,
+      title: 'Удилище',
+      price: '13999',
+    },
   ];
-
-  import { stuffModal, stuffModalJSON } from '../../stores';
-
-  const showStuffInfo = (stuff) => {
-    stuffModal.update(item => {
-      return {
-        id: stuff.id,
-        images: [],
-        title: stuff.title,
-        description: '',
-        properties: [],
-        rating: 0,
-        price: ''
-      }
-    })
-  }
 </script>
 
 <div class="stuffs-wrapper">
@@ -96,54 +79,6 @@
       <img src={SunlineIcon} alt="" />
     </SwiperSlide>
   </Swiper>
-  <div class="stuffs-sort">
-    <div class="stuffs-sort-control">
-      <label for="price" class="stuffs-sort-label">Цена (₽)</label>
-      <div class="stuffs-sort-group">
-        <input type="number" name="price" class="stuffs-sort-input input" id="price-from" placeholder="От 3 999">
-        <span> — </span>
-        <input type="number" name="price" class="stuffs-sort-input input" id="price-to" placeholder="До 14 999">
-      </div>
-    </div>
-    <div class="stuffs-sort-control">
-      <label for="quantity" class="stuffs-sort-label">Количество</label>
-      <InputCounter
-        name="quantity"
-        className="stuffs-sort-input"
-        minValue={0}
-        maxValue={3}
-      />
-    </div>
-    <div class="stuffs-sort-control">
-      <label for="type" class="stuffs-sort-label">Тип</label>
-      <InputSelect
-        name="quantity"
-        className="stuffs-sort-input"
-        options={options}
-      />
-    </div>
-    <div class="stuffs-sort-control">
-      <label for="length" class="stuffs-sort-label">Длина</label>
-      <div class="stuffs-sort-group">
-        <input type="number" name="length" class="stuffs-sort-input input" id="length-from" placeholder="От 50">
-        <span> — </span>
-        <input type="number" name="length" class="stuffs-sort-input input" id="length-to" placeholder="До 150">
-      </div>
-    </div>
-  </div>
-  <ul class="stuffs-list">
-    {#each stuffs as stuff}
-      <li class="stuffs-list-item">
-        <div on:click={() => showStuffInfo(stuff)} class="stuffs-list-info">
-          <div class="stuffs-list-info-image">
-            <img src={stuff.image} alt="" />
-          </div>
-          <h3 class="stuffs-list-info-title">{stuff.title}</h3>
-        </div>
-        <StuffFooter
-          stuff={stuff}
-        />
-      </li>
-    {/each}
-  </ul>
+  <StuffsSort types={options} />
+  <StuffsList stuffs={stuffs} />
 </div>

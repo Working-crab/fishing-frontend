@@ -1,148 +1,70 @@
 <script>
-    import logo from '../../assets/images/logo.png'
+import logo from '../../assets/images/logo.png'
 
-    import { regModal } from '../../stores';
-    import { authModal } from '../../stores';
-    import { resetPassModal } from '../../stores';
+import { authModal } from '../../stores';
+import AnimateInput from '../AnimateInput.svelte';
+import Register from './Register.svelte';
+import ResetPassword from './ResetPassword.svelte';
 
-    const showRegModal = () =>{
-        regModal.update(modal => {
-            return {
-                ...modal, isVisible: true
-            }
-        });
-        authModal.update(modal => {
-            return {
-                ...modal, isVisible: false
-            }
-        });
-    }
+const hideModal = () => {
+    authModal.update(() => {
+        return {
+            component: null
+        }
+    });
+};
 
-    const closeModal = () =>{
-        authModal.update(modal => {
-            return {
-                ...modal, isVisible: false
-            }
-        });
-    };
+const handleFormSubmit = () => {
 
-    const showResetPassModal = () =>{
-        regModal.update(modal => {
-            return {
-                ...modal, isVisible: false
-            }
-        });
-        authModal.update(modal => {
-            return {
-                ...modal, isVisible: false
-            }
-        })
-        resetPassModal.update(modal => {
-            return {
-                ...modal, isVisible: true
-            }
-        })
-    }
+}
+
+const handleRegistrationLink = () => {
+    authModal.update(() => {
+        return {
+            component: Register
+        }
+    })
+}
+
+const handleResetLink = () => {
+    authModal.update(() => {
+        return {
+            component: ResetPassword
+        }
+    })
+}
+
 </script>
 
-<div class="auth-wrapper">
-    <div on:click={closeModal} class="blackover"></div>
-    <form class="auth-form" action="">
-        <div class="title-container">
-            <div class="logo-img">
-                <img  src={logo} alt="">
+<div on:click|stopPropagation={hideModal} class="modal auth-modal">
+    <form on:click|stopPropagation|preventDefault={handleFormSubmit} class="auth auth-modal-form" action="">
+        <div class="auth-container">
+            <div class="auth-title">
+                <div class="auth-title-logo">
+                    <img src={logo} alt="">
+                </div>
+                <h1 class="auth-title-text">Авторизация</h1>
             </div>
-            <h1>Авторизация</h1>
-        </div>
-        <input class="input auth-form-input" placeholder="E-mail" type="email">
-        <input class="input auth-form-input" placeholder="пароль" type="password">
-        <div class="forgot-password-container">
-            <span on:click={showResetPassModal}>Забыли пароль?</span>
-        </div>
-        <div class="auth-footer">
-            <span on:click={showRegModal}>Регистрация</span>
-            <button class="btn">Войти</button>
+            <AnimateInput
+                inputType='email'
+                name='email'
+                placeholder='E-mail'
+                labelClass='auth-input'
+            />
+            <AnimateInput
+                inputType='password'
+                name='password'
+                placeholder='Пароль'
+                labelClass='auth-input'
+            />
+            <div class="auth-reset">
+                <span on:click={handleResetLink}>Забыли пароль?</span>
+            </div>
+            <div class="auth-footer">
+                <span class="auth-footer-link" on:click={handleRegistrationLink}>Регистрация</span>
+                <button type="submit" class="auth-footer-button button">Войти</button>
+            </div>
         </div>
     </form>
 </div>
-
-<style>
-    .auth-wrapper {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 99;
-    }
-
-    .auth-form {
-        z-index: inherit;
-        background-color: #fff;
-        border-radius: 10px;
-        width: 600px;
-        height: 525px;
-        padding: 0 100px;
-    }
-
-    .auth-form-input {
-        background-color: #F8F8F8;
-        border-radius: 10px;
-        height: 50px;
-        padding: 0 20px;
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .title-container {
-        display: grid;
-        align-items: center;
-        justify-content: center;
-        justify-items: center;
-        margin-top: 50px;
-        margin-bottom: 30px;
-    }
-
-    .logo-img {
-        width: 75px;
-        height: 75px;
-        position: relative;
-    }
-    .logo-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    h1 {
-        font-weight: 400;
-        font-size: 24px;
-        margin-top: 20px;
-    }
-    .forgot-password-container {
-        display: flex;
-        justify-content: flex-end;
-    }
-    .forgot-password-container span {
-        color: #2D75E1;
-        cursor: pointer;
-    }
-    .auth-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 40px;
-    }
-    .auth-footer span {
-        color: #2D75E1;
-        cursor: pointer;
-    }
-
-    span{
-        font-size: 14px;
-    }
-</style>
     

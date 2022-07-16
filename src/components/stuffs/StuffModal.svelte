@@ -6,14 +6,13 @@
 
     import { stuffModal, stuffModalJSON } from '../../stores';
 
-    const handleBlackoverClick = () => {
+    const hideModal = () => {
         // reset stuffModal props for hide modal
-        stuffModal.update(stuff => stuffModalJSON);
+        stuffModal.update(() => stuffModalJSON);
     }
 </script>
 
-<div class="modal">
-    <div on:click={handleBlackoverClick} class="modal-blackover" />
+<div on:click|stopPropagation={hideModal} class="modal">
     <div class="stuff-modal">
         <div class="stuff-modal-images">
             <div class="stuff-modal-images-main">

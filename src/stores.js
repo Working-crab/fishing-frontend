@@ -11,25 +11,7 @@ export const stuffModalJSON = {
 }
 export const stuffModal = writable(stuffModalJSON);
 
-export const regModalJSON = {
-    name: '',
-    surname: '',
-    phone: '',
-    email: '',
-    password: '',
-    isVisible: false,
-}
-export const regModal = writable(regModalJSON);
-
-export const authModalJSON = {
-    email: '',
-    password: '',
-    isVisible: false,
-}
-export const authModal = writable(authModalJSON);
-
-export const resetPassModalJSON = {
-    email: '',
-    isVisible: false,
-}
-export const resetPassModal = writable(resetPassModalJSON);
+// auth | reg | reset - modals
+export const authModal = writable({
+    component: null,
+})

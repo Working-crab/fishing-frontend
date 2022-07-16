@@ -7,11 +7,12 @@
     import UserIcon from '../assets/images/Person.svg'
 
     import { authModal } from '../stores';
+    import Auth from "./auth/Auth.svelte";
 
     const showAuthModal = () =>{
-        authModal.update(modal => {
+        authModal.update(() => {
             return {
-                ...modal, isVisible: true
+                component: Auth
             }
         });
     } 
