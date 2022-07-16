@@ -1,5 +1,5 @@
 <script>
-  import { Navigation, A11y } from 'swiper';
+  import { Navigation, Virtual } from 'swiper';
 
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import 'swiper/css';
@@ -14,6 +14,14 @@
   import SunlineIcon from '../../assets/images/brands/Sunline.png';
   import RodImage from '../../assets/images/rod.png';
   import StuffsSort from './StuffsSort.svelte';
+
+  const sliderElements = [
+    AbugarciaIcon,
+    DIcon,
+    JackallIcon,
+    ShimanoIcon,
+    SunlineIcon,
+  ];
 
   let options = [
     {id: 1, value: 'val'},
@@ -56,29 +64,28 @@
 
 <div class="stuffs-wrapper">
   <!-- todo: swiper styles are broken, try add more swiper sldies and then you'll see -->
-  <Swiper
-    modules={[Navigation, A11y]}
-    spaceBetween={28}
-    slidesPerView={3}
-    navigation
-    class="stuffs-brands"
-  >
-    <SwiperSlide class="stuffs-brands-item">
-      <img src={AbugarciaIcon} alt="" />
-    </SwiperSlide>
-    <SwiperSlide class="stuffs-brands-item">
-      <img src={DIcon} alt="" />
-    </SwiperSlide>
-    <SwiperSlide class="stuffs-brands-item">
-      <img src={JackallIcon} alt="" />
-    </SwiperSlide>
-    <SwiperSlide class="stuffs-brands-item">
-      <img src={ShimanoIcon} alt="" />
-    </SwiperSlide>
-    <SwiperSlide class="stuffs-brands-item">
-      <img src={SunlineIcon} alt="" />
-    </SwiperSlide>
-  </Swiper>
+
+  <div class="swiper-container">
+  
+    <Swiper
+      modules={[Navigation, Virtual]}
+      spaceBetween={50}
+      slidesPerView={4}
+      loop={true}
+      navigation
+      class="stuffs-brands"
+    >
+
+      {#each sliderElements as slide, index}
+        <SwiperSlide class="swiper-slide-item">
+          <img id={"slide" + index} src={slide} alt="" />
+        </SwiperSlide>
+      {/each}
+      
+    </Swiper>
+
+  </div>
+
   <StuffsSort types={options} />
   <StuffsList stuffs={stuffs} />
 </div>

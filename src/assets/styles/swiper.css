@@ -47,3 +47,15 @@
     width: 30px!important;
     opacity: 0.35;
 }
+
+.swiper-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.swiper-slide-item {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 1px solid black;
+}
