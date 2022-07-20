@@ -1,5 +1,5 @@
 <script>
-  import { Navigation, Virtual } from 'swiper';
+  import { Navigation } from 'swiper';
 
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import 'swiper/css';
@@ -60,22 +60,26 @@
       price: '13999',
     },
   ];
+
 </script>
 
 <div class="stuffs-wrapper">
   <!-- todo: swiper styles are broken, try add more swiper sldies and then you'll see -->
-
   <div class="swiper-container">
-  
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
     <Swiper
-      modules={[Navigation, Virtual]}
-      spaceBetween={50}
-      slidesPerView={4}
+      modules={[Navigation]}
+      spaceBetween={55}
+      slidesPerView={5}
       loop={true}
-      navigation
+      navigation={{
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      }}
       class="stuffs-brands"
     >
-
+    
       {#each sliderElements as slide, index}
         <SwiperSlide class="swiper-slide-item">
           <img id={"slide" + index} src={slide} alt="" />
@@ -89,3 +93,6 @@
   <StuffsSort types={options} />
   <StuffsList stuffs={stuffs} />
 </div>
+
+<style> 
+</style>

@@ -1,5 +1,6 @@
 <script>
   import './assets/styles/index.css'
+  import { onMount } from 'svelte';
   import { Router, Route } from "svelte-routing";
   import Header from './components/Header.svelte';
   import StuffModal from "./components/stuffs/StuffModal.svelte";
@@ -24,9 +25,48 @@
     authModalStore = context;
   });
 
+  
+  onMount(async () => {
+		computingWindowSize()
+	});
+
+
+  function computingWindowSize() {
+    const heightScreen = window.screen.height
+    const widthScreen = window.screen.width
+    const cofForWidth = 1.3
+    let maxContainerWidth = heightScreen * cofForWidth
+    
+
+    if (widthScreen > maxContainerWidth) {
+      maxContainerWidth = widthScreen
+    }
+    // console.log("window.innerWidth", window.innerWidth)
+    // console.log("maxContainerWidth", maxContainerWidth)
+
+    const style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = `.mainContainer { height: 100%; width: 100%; max-width: ${maxContainerWidth}px; min-width: ${maxContainerWidth}px  }`;
+    document.getElementsByTagName('head')[0].appendChild(style);
+
+    document.getElementById('mainDiv').className = 'mainContainer';
+  }
+  
+  // if (heightScreen) {
+    
+  // }
+
+  window.addEventListener('resize', () => {
+    computingWindowSize()
+  });
+
+
+
   export let url = "";
 </script>
 
+<div id="mainDiv">
+  
 <Router url="{url}">
   {#if stuffModalStore.id}
     <div class="blackover" />
@@ -49,6 +89,8 @@
     </div>
   </main>
 </Router>
+</div>
+
 
 <style>
 

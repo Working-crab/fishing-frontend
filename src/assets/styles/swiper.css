@@ -50,12 +50,18 @@
 
 .swiper-container {
     width: 100%;
-    max-width: 900px;
+    max-width: 970px;
+    position: relative;
 }
 
 .swiper-slide-item {
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
-    border: 1px solid black;
+    max-width: 150px;
+    height: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 10px rgba(57, 54, 77, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
 }

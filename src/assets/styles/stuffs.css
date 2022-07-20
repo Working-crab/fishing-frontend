@@ -9,7 +9,8 @@
 }
 
 .stuffs-menu {
-    min-width: 300px;
+    max-width: 300px;
+    width: 100%;
     height: 400px;
     background-color: #FFF;
     border-radius: 10px;
@@ -116,6 +117,8 @@ span + .stuffs-sort-input {
     height: 100px;
     margin-bottom: 20px;
     padding: 5px 45px!important;
+    user-select: none;
+    position: relative;
 }
 
 .stuffs-brands-item {
@@ -147,7 +150,9 @@ span + .stuffs-sort-input {
 
 .stuffs-list-item {
     position: relative;
-    width: 300px;
+    max-width: 300px;
+    min-width: 240px;
+    width: 100%;
 }
 
 .stuffs-list-info {
@@ -167,7 +172,7 @@ span + .stuffs-sort-input {
 
 .stuffs-list-info-image {
     position: relative;
-    width: 250px;
+    width: 100%;
     height: 100%;
     margin-bottom: 12px;
     transition: transform .3s ease;
