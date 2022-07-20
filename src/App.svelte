@@ -34,17 +34,20 @@
   function computingWindowSize() {
     const heightScreen = window.screen.height
     const widthScreen = window.screen.width
-    const cofForWidth = 1.3
+    const cofForWidth = 1
     let maxContainerWidth = heightScreen * cofForWidth
     
-
-    if (widthScreen > maxContainerWidth) {
+    // если не помещаецца
+    if (maxContainerWidth > widthScreen) {
       maxContainerWidth = widthScreen
     }
     // console.log("window.innerWidth", window.innerWidth)
     // console.log("maxContainerWidth", maxContainerWidth)
 
+    document.getElementById('mainContainerStyleId')?.remove();
+    
     const style = document.createElement('style');
+    style.id = 'mainContainerStyleId'
     style.type = 'text/css';
     style.innerHTML = `.mainContainer { height: 100%; width: 100%; max-width: ${maxContainerWidth}px; min-width: ${maxContainerWidth}px  }`;
     document.getElementsByTagName('head')[0].appendChild(style);
