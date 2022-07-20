@@ -34,7 +34,7 @@
   function computingWindowSize() {
     const heightScreen = window.screen.height
     const widthScreen = window.screen.width
-    const cofForWidth = 1
+    const cofForWidth = 1.4
     let maxContainerWidth = heightScreen * cofForWidth
     
     // если не помещаецца
@@ -49,7 +49,14 @@
     const style = document.createElement('style');
     style.id = 'mainContainerStyleId'
     style.type = 'text/css';
-    style.innerHTML = `.mainContainer { height: 100%; width: 100%; max-width: ${maxContainerWidth}px; min-width: ${maxContainerWidth}px  }`;
+    style.innerHTML = `.mainContainer { 
+      height: 100%; 
+      width: 100%; 
+      max-width: ${maxContainerWidth}px; 
+      min-width: ${maxContainerWidth}px;
+      margin: auto;
+      overflow: hidden;
+    }`;
     document.getElementsByTagName('head')[0].appendChild(style);
 
     document.getElementById('mainDiv').className = 'mainContainer';
