@@ -1,0 +1,69 @@
+.swiper-button-prev,
+.swiper-rtl .swiper-button-next {
+    left: 0!important;
+    right: auto!important;
+}
+
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+    left: auto!important;
+    right: 0!important;
+}
+
+.swiper-button-prev::after,
+.swiper-rtl .swiper-button-next::after {
+    content: ''!important;
+    font-family: unset!important;
+    width: 30px;
+    height: 30px;
+    background-image: url('../images/Arrow.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.swiper-button-next::after,
+.swiper-rtl .swiper-button-prev::after {
+    content: ''!important;
+    font-family: unset!important;
+    width: 30px;
+    height: 30px;
+    background-image: url('../images/Arrow.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.swiper-button-prev {
+    transform: rotate(90deg);
+}
+
+.swiper-button-next {
+    transform: rotate(-90deg);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    width: 30px!important;
+    opacity: 0.35;
+}
+
+.swiper-container {
+    width: 100%;
+    max-width: 970px;
+    height: 100px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.swiper-slide-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 150px;
+    height: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 10px rgba(57, 54, 77, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+}
