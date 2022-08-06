@@ -44,5 +44,5 @@ jobs:
             git pull origin main &&
             npm i &&
             npm run build &&
-            cp -R dist/* /var/www/fishing/frontend
+            npm run start
           '
