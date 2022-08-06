@@ -44,5 +44,6 @@ jobs:
             git pull origin main &&
             npm i &&
             npm run build &&
-            npm run start
+            pm2 stop all &&
+            pm2 start pm2.config.js
           '
