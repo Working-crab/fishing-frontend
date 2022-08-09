@@ -1,44 +1,41 @@
 <template>
   <div class="container">
     <article class="stuffs">
-      <StuffMenu />
+      <div class="staff-menu-container">
+        <StuffMenu />
+        <StuffsSort />
+      </div>
       <Stuffs />
     </article>
-    <button @click="getProducts1">запрос</button>
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 import StuffMenu from '@/components/stuffs/StuffMenu'
 import Stuffs from '@/components/stuffs/Stuffs'
-import Modal from '@/components/Modal.vue'
-import ModalAuth from '@/components/modals/ModalAuth.vue'
+import StuffsSort from '@/components/stuffs/StuffsSort'
 
 export default {
   name: 'IndexPage',
   layout: 'default',
   components: {
     StuffMenu,
-    Stuffs,
-    Modal,
+    Stuffs,StuffsSort
   },
   data() {
     return {
-      foo: false,
-      products: '',
     }
   },
-  methods: {
-    getProducts1(){
-      console.log(this.products.edges[0].node)
-    },
-    ...mapActions({
-      getProducts: 'products/getProducts'
-    })
-  }
+  created() {
+    //this.getProducts()
+  },
 }
 </script>
 
 <style scoped>
+.staff-menu-container {
+  max-width: 300px;
+  width: 100%;
+}
 </style>

@@ -1,3 +1,4 @@
-export default function() {
-    console.log("i am middleware")
+export default function(context) {
+    //console.log(context)
+
 }

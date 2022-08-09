@@ -1,11 +1,11 @@
 <template>
-    <div class="">
+    <div>
         <Header />
-        <transition name="fade">
-            <div>
-                <Nuxt />
-            </div>
-        </transition>
+        <div class="container">
+          <transition name="fade">
+            <Nuxt />
+          </transition>
+        </div>
     </div>
 </template>
 

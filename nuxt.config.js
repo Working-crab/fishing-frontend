@@ -26,8 +26,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '@/plugins/nuxt-swiper-plugin.js', mode:'client' },
-    { src: '@/plugins/vue-js-modal', mode: 'client'},
     { src: '@/plugins/M-modal.js', mode: 'client'},
+    { src: '@/plugins/M-gql.js', mode: 'client'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -37,11 +37,18 @@ export default {
   buildModules: [
   ],
 
+  primevue: {
+    theme: 'saga-blue',
+    ripple: true,
+    components: ['InputText','Button', 'Toast', 'Paginator'],
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/apollo',
+    'primevue/nuxt',
   ],
   apollo: {
     clientConfigs: {
@@ -59,5 +66,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: ['primevue'],
   }
+  
 }
+

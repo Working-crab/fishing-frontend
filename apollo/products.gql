@@ -1,0 +1,11 @@
+query($start: Int) {
+  products(offset: $start, first: 10) {
+    edges {
+      node {
+        id
+        description
+        name
+      }
+    }
+  }
+}

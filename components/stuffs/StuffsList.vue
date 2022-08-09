@@ -1,64 +1,86 @@
 <template>
-    <ul v-if="loading" :class="`${parentClass} stuffs-list`">
-        <li v-for="stuff in stuffs" :key="stuff.id" class="stuffs-list-item">
+  <div>
+    <transition name="fade" mode="out-in">
+      <ul v-if="loading" :class="`${parentClass} stuffs-list`">
+        <li v-for="stuff in products.edges" :key="stuff.node.id" class="stuffs-list-item">
             <div @click="showStuffInfoModal(stuff)" class="stuffs-list-info">
                 <div class="stuffs-list-info-image">
-                    <img :src="require(`@/assets/images/${stuff.image}`)" alt="" />
+                    <img :src="require(`@/assets/images/rod.png`)" alt="" />
                 </div>
-                <h3 class="stuffs-list-info-title">{{stuff.title}}</h3>
+                <h3 class="stuffs-list-info-title">{{stuff.node.name}}</h3>
             </div>
             <StuffFooter
                 :stuff="stuff"
             />
         </li>
-        <button>Показать obj</button>
-    </ul>
-    
+      </ul>
+    </transition>
+    <Paginator :first="currentPage" :rows="1" :totalRecords="totalItemsCount" @page="onPage($event)" />
+  </div>
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
 import StuffFooter from '@/components/stuffs/StuffFooter.vue'
 import StuffModal from '@/components/stuffs/StuffModal.vue'
-import gql from 'graphql-tag'
+import QueryProducts from '@/apollo/products.gql'
 
 export default {
-    props: {
-        stuffs: Array,
+  // apollo: {
+  //   products: {
+  //     prefetch: true,
+  //     query: QueryProducts
+  //   }
+  // },
+  props: {
+      stuffs: Array,
+      parentClass: String
+  },
+  components: {
+      StuffFooter,
+  },
+  data() {
+      return {
+        loading: true,
+        totalItemsCount: 0,
+        currentPage: 0,
+        rows: 1,
+      }
+  },
+  methods: {
+    showStuffInfoModal(){
+      this.$mModal.show(StuffModal)
     },
-    components: {
-        StuffFooter
+    ...mapActions({
+      getProductsPage: 'products/getProductsPage',
+      getProductsCount: 'products/getProductsCount'
+    }),
+    async onPage(event) {
+      if (this.currentPage != event.page) {
+        this.loading = false
+        this.$router.push({ query: { currentPage: event.page } })
+        this.currentPage = event.page
+        
+        await this.getProductsPage(this.startItemGql)
+        this.loading = true
+      }
     },
-    data() {
-        return {
-          parentClass: '',
-          loading: false,
+  },
+  async beforeMount() {
+    await this.getProductsCount()
+    this.totalItemsCount = (this.productsCount.edges.length / this.rows)
 
-        }
+    await this.getProductsPage(Number(this.$route.query.currentPage))
+    this.currentPage = Number(this.$route.query.currentPage)
+  },
+  computed: {
+    startItemGql() {
+      return this.currentPage * this.rows
     },
-    async created () {
-      setTimeout(() => {
-              this.loading = true
-      }, 600)
-    },
-    methods: {
-      showStuffInfoModal(){
-        //console.log(this.stuffs[0])
-        this.$mModal.show(StuffModal)
-      },
-      
-        // const showStuffInfo = (stuff) => {
-        //     stuffModal.update(item => {
-        //         return {
-        //             id: stuff.id,
-        //             images: [],
-        //             title: stuff.title,
-        //             description: '',
-        //             properties: [],
-        //             rating: 0,
-        //             price: ''
-        //         }
-        //     })
-        // }
-    }
+    ...mapGetters({
+      products: 'products/productsPage',
+      productsCount: 'products/productsCount'
+    })
+  }
 }
 </script>

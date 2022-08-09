@@ -15,7 +15,7 @@
         <div class="swiper-pagination swiper-pagination-bullets"></div> 
       </div>
     </div>
-    <StuffsSort />
+    <ProductFilter />
     <StuffsList :stuffs="stuffs" />
   </div>
 </template>

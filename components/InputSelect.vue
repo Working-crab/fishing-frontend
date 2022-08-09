@@ -1,5 +1,5 @@
 <template>
-    <div @click="dropdownButtonHandler" :class="`${dropdownClass} dropdown`">
+    <div @click="dropdownButtonHandler" @mouseleave="offdropdownButton" :class="`${dropdownClass} dropdown`">
         <input 
             @click="dropdownButtonHandler"
             type="text" 
@@ -59,6 +59,9 @@ export default {
         },
         itemClickHandler(id) {
             this.currentItem = id
+        },
+        offdropdownButton() {
+          this.isActive = false
         }
     }
 }
