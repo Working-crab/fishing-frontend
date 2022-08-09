@@ -44,5 +44,6 @@ jobs:
             git pull origin main &&
             npm i &&
             npm run build &&
-            cp -R dist/* /var/www/fishing/frontend
+            pm2 restart pm2.config.js &&
+            pm2 save
           '
