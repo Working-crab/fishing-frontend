@@ -8,7 +8,7 @@
     >
       <div :class="`${classes} swiper-wrapper images-carousel`">
         <div class="swiper-slide images-carousel-item" v-for="image, index in images" :key="index">
-          <img src="@/assets/images/rod.png" alt="brands">
+          <img :src="`https://diwos.ru/uploads/` + image.image" alt="brands">
         </div>
       </div>
     </div>
@@ -33,6 +33,6 @@ export default {
         }
       },
     }
-  }
+  },
 }
 </script>

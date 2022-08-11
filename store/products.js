@@ -39,12 +39,16 @@ export const actions = {
   async getProductsPage({commit}, page) {
     const PRODUCTS = 
     `{
-      products(offset: ${page}, first: 1) {
+      products(offset: ${page.start}, first: ${page.size}) {
         edges {
           node {
             id
             description
             name
+            mainPicture {
+              id
+              image
+            }
           }
         }
       }

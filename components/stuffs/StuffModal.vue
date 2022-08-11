@@ -2,7 +2,7 @@
   <div class="stuff-modal">
       <div class="stuff-modal-images">
           <div class="stuff-modal-images-main">
-              <img src="@/assets/images/rod.png" alt="" />
+              <img :src="`https://diwos.ru/uploads/` + props.node.mainPicture.image" alt="" />
           </div>
           <client-only>
             <ImagesCarousel
@@ -13,7 +13,7 @@
       </div>
       <div class="stuff-modal-info">
           <h2 class="stuff-modal-info-title">
-              Удилище с катушкой Рыболов-экспресс удочка (50 - 100 гр)
+              {{props.node.name}}
           </h2>
           <p class="stuff-modal-info-descr">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ipsum vel lorem lacinia viverra. Phasellus in nunc volutpat, congue tellus a, fringilla mi. Aliquam bibendum arcu ac velit ultrices ultricies. Nullam ut nunc erat.
@@ -71,7 +71,8 @@
 import StuffFooter from '@/components/stuffs/StuffFooter.vue'
 export default {
   props: {
-    classes: String
+    classes: String,
+    props: Object
   },
   components: {
     StuffFooter
@@ -81,35 +82,30 @@ export default {
       images: [
           {
             id: 1,
-            image: 'rod.png',
+            image: this.props.node.mainPicture.image,
             title: 'Удилище',
             price: '7999',
           },
           {
             id: 2,
-            image: 'rod.png',
+            image: this.props.node.mainPicture.image,
             title: 'Удилище',
             price: '13999',
           },
           {
             id: 3,
-            image: 'rod.png',
+            image: this.props.node.mainPicture.image,
             title: 'Удилище',
             price: '13999',
           },
           {
             id: 4,
-            image: 'rod.png',
+            image: this.props.node.mainPicture.image,
             title: 'Удилище',
             price: '13999',
           },
         ],
     }
   },
-  methods: {
-    // hideModal() {
-    //   this.$mModal.hide()
-    // }
-  }
 }
 </script>
