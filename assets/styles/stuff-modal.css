@@ -4,7 +4,7 @@
     display: flex;
     align-items: flex-start;
     width: 1000px;
-    height: 600px;
+    min-height: 600px;
     background-color: #FFF;
     border-radius: 10px;
     z-index: inherit;

@@ -16,7 +16,7 @@
               {{props.node.name}}
           </h2>
           <p class="stuff-modal-info-descr">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ipsum vel lorem lacinia viverra. Phasellus in nunc volutpat, congue tellus a, fringilla mi. Aliquam bibendum arcu ac velit ultrices ultricies. Nullam ut nunc erat.
+              {{this.props.node.description}}
           </p>
           <p class="stuff-modal-info-props">
               <span class="stuffs-prop">

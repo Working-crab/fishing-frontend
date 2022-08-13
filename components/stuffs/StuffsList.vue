@@ -78,11 +78,11 @@ export default {
       this.currentPage = Number(this.$route.query.currentPage)
       await this.getProductsPage({start: this.startItemGql, size: this.rows})
     }
-
-    if(!this.$route.query.currentPage){// если нет query
+    if(!this.$route.query.currentPage && localStorage.curProductPage){// если нет query
       this.currentPage = localStorage.curProductPage
       await this.getProductsPage({start: this.startItemGql, size: this.rows})
     }
+    await this.getProductsPage({start: this.startItemGql, size: this.rows})
   },
 
   computed: {
