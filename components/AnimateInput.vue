@@ -1,11 +1,14 @@
 <template>
-  <label for="name" :class="`${labelClass} animate-input`">
+  <label :for="_uid" :class="`${labelClass} animate-input`">
+
     <input 
+      v-on="inputListeners"
       :type="isPasswordVisible && inputType === 'password' ? 'text' : inputType"
-      id="name"
-      name="name"
+      :id="_uid"
+      :name="name"
+      :pattern="pattern"
       :class="`${inputClass} input animate-input-control`"
-      :placeholder="placeholder"
+      placeholder=" "
     >
     <span :class="`${titleClass} animate-input-placeholder`">{{placeholder}}</span>
     
@@ -17,20 +20,26 @@ export default {
   props: {
     inputType: String,
     name: String,
+    pattern: String,
     placeholder: String,
     labelClass: String,
     inputClass: String,
     titleClass: String,
-    isPasswordVisible: String
-  },
-  methods: {
-    lolg() {
-      
-    }
+    isPasswordVisible: String,
   },
   data() {
     return {
     }
+  },
+  computed: {
+    inputListeners: function () {
+      return {
+        ...this.$listeners,
+        input: (event) => {
+          this.$emit('input', event.target.value);
+        },
+      };
+    },
   }
 }
 </script>

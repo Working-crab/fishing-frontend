@@ -78,6 +78,7 @@ export default {
     width: 650px;
     height:50px;
     position: relative;
+    margin: 0 40px;
 }
 
 input {

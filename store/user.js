@@ -1,7 +1,7 @@
 export const namespaced = true;
 
 export const state = () => ({
-    component: ''
+    currentUser: '',
 })
 
 export const getters = {
@@ -17,5 +17,7 @@ export const mutations = {
 }
 
 export const actions = {
-  
+  register() {
+    
+  }
 }

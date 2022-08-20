@@ -16,6 +16,10 @@
   transition: font-size .3s ease, top .3s ease;
 }
 
+.animate-input-placeholder:hover {
+  cursor: text;
+}
+
 .animate-input-control:focus + .animate-input-placeholder  {
   font-size: 14px;
   top: 10px;
@@ -38,6 +42,7 @@
   font-weight: 500;
   color: rgba(0, 0, 0, 0.5);
   padding: 0 20px!important;
+  
 }
 
 .animate-input-control:focus {

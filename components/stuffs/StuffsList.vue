@@ -27,12 +27,6 @@ import StuffModal from '@/components/stuffs/StuffModal.vue'
 import QueryProducts from '@/apollo/products.gql'
 
 export default {
-  // apollo: {
-  //   products: {
-  //     prefetch: true,
-  //     query: QueryProducts
-  //   }
-  // },
   props: {
       stuffs: Array,
       parentClass: String
@@ -45,10 +39,10 @@ export default {
         loading: true,
         totalItemsCount: 0,
         currentPage: 0,
-        rows: 3,
+        rows: 4,
       }
   },
-  methods: {// + stuff.node.mainPicture.image
+  methods: {
     showStuffInfoModal(stuff){
       this.$mModal.show(StuffModal, stuff)
     },
@@ -64,7 +58,6 @@ export default {
         this.currentPage = event.page
 
         await this.getProductsPage({start: this.startItemGql, size: this.rows})
-        //setTimeout(() => this.loading = true, 1000)
         this.loading = true
       }
     },
@@ -82,7 +75,7 @@ export default {
       this.currentPage = localStorage.curProductPage
       await this.getProductsPage({start: this.startItemGql, size: this.rows})
     }
-    await this.getProductsPage({start: this.startItemGql, size: this.rows})
+    await this.getProductsPage({start: this.startItemGql, size: this.rows})// если нет нихуя
   },
 
   computed: {
