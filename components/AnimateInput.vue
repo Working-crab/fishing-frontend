@@ -1,10 +1,10 @@
 <template>
-  <label :for="_uid" :class="`${labelClass} animate-input`">
+  <label :for="uid" :class="`${labelClass} animate-input`">
 
     <input 
       v-on="inputListeners"
       :type="isPasswordVisible && inputType === 'password' ? 'text' : inputType"
-      :id="_uid"
+      :id="uid"
       :name="name"
       :pattern="pattern"
       :class="`${inputClass} input animate-input-control`"
@@ -29,7 +29,11 @@ export default {
   },
   data() {
     return {
+      uid: ''
     }
+  },
+  mounted(){
+    this.uid = this._uid
   },
   computed: {
     inputListeners: function () {

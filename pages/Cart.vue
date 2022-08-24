@@ -54,6 +54,8 @@ export default {
             ]
         }
     },
+    methods: {
+    },
   computed: {
     total() {
       return this.stuffs.reduce((total, stuff) => {

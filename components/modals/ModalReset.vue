@@ -1,6 +1,6 @@
 <template>
-  <div @click="hideModal" class="modal auth-modal">
-      <form @click="handleFormSubmit" class="reset auth-modal-form" action="">
+  <div class="modal auth-modal">
+      <form @submit.prevent="handleFormSubmit" class="reset auth-modal-form" action="">
           <div class="auth-container">
               <div class="reset-title">
                   <div class="reset-title-logo">
@@ -9,6 +9,7 @@
                   <h1 class="reset-title-text">Восстановление пароля</h1>
               </div>
               <AnimateInput
+                  v-model="email"
                   inputType='email'
                   name='email'
                   placeholder='E-mail'
@@ -26,17 +27,26 @@
 
 <script>
 import ModalAuth from '@/components/modals/ModalAuth.vue'
+import {mapActions} from 'vuex'
 
 export default {
+  data() {
+    return {
+      email: ''
+    }
+  },
   methods: {
+    ...mapActions({
+      resetPass: 'users/resetPass'
+    }),
     showAuthModal() {
       this.$mModal.show(ModalAuth)
     },
-    hideModal() {
-      //this.$mModal.hide()
-    },
-    handleFormSubmit() {
-
+    async handleFormSubmit() {
+      //console.log(this.$store)
+      console.log(this)
+      this.$mRestQuery('api/accounts/send-reset-password-link/', {login: this.email})
+      //const response = await this.$mRestQuery.query()
     }
   }
 }

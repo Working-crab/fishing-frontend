@@ -45,6 +45,7 @@
                 labelClass='reg-input'
               />  
               <AnimateInput
+                v-model="password_confirm"
                 inputType='password'
                 name='repeat-password'
                 placeholder='Повторите пароль'
@@ -86,9 +87,23 @@ export default {
       this.$mModal.show(ModalAuth)
     },
     async handleFormSubmit() {
-
-      //await setTimeout(() => console.log('сработало'), 1000)
-      console.log(this.phone)
+      console.log(this)
+      if(this.password != this.password_confirm) {
+        alert('Пароли не совпадают')
+      }
+      else {
+        const form = {
+          first_name: this.first_name,
+          last_name: this.last_name,
+          phone: this.phone,
+          email: this.email,
+          username: this.email,
+          password: this.password,
+          password_confirm: this.password_confirm,
+        }
+        console.log(this.$mRestQuery.query('api/accounts/register/' ,form))
+        
+      }
     }
   }
 }

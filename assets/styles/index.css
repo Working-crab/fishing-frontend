@@ -123,3 +123,14 @@ h1, h2, h3, h4, h5, h6, ul, li, ol, p, body {
   opacity: 0;
 }
 
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 102;
+}
+

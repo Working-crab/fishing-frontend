@@ -6,7 +6,9 @@
         <StuffsSort />
       </div>
       <Stuffs />
+      <nuxt-link to="/PassChange">К тестовой модалке</nuxt-link>
     </article>
+    <button @click="vivod">asdads</button>
   </div>
 </template>
 
@@ -30,6 +32,11 @@ export default {
   created() {
     //this.getProducts()
   },
+  methods: {
+    vivod() {
+      console.log(this)
+    }
+  }
 }
 </script>
 
@@ -38,4 +45,5 @@ export default {
   max-width: 300px;
   width: 100%;
 }
+
 </style>

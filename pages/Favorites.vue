@@ -50,7 +50,9 @@ export default {
                 },
             ]
         }
-    }
+    },
+  methods: {
+  }
 }
 </script>
 

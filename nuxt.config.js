@@ -29,6 +29,7 @@ export default {
     { src: '@/plugins/nuxt-swiper-plugin.js', mode:'client' },
     { src: '@/plugins/M-modal.js', mode: 'client'},
     { src: '@/plugins/M-gql.js', mode: 'client'},
+    { src: '@/plugins/M-post-query.js', mode: 'client'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -50,6 +51,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/apollo',
     'primevue/nuxt',
+    ['cookie-universal-nuxt', { alias: 'cookies' }]
   ],
   apollo: {
     clientConfigs: {
