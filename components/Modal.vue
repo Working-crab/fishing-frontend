@@ -16,7 +16,6 @@ export default {
   props: ['showComponent', 'modalId', 'componentProps'],
 
   mounted() {
-    // console.log({showComponent: this.showComponent})
   },
 
   methods: {

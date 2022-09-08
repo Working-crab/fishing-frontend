@@ -3,18 +3,18 @@ import mGQLquery from '@/plugins/M-gql.js'
 export const namespaced = true;
 
 export const state = () => ({
-    items: []
+  items: []
 })
 
 export const getters = {
   favorites(state) {
-      return state.items;
+    return state.items;
   },
 }
 
 export const mutations = {
-  SET_FAVORITES(state, items) {
-      state.items = items;
+  SET_CART_ITEMS(state, items) {
+    state.items = items;
   },
 }
 

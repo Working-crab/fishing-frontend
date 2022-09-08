@@ -10,7 +10,7 @@
         </div>
         <AnimateInput
         v-model="login"
-        :inputType="'email'"
+        :inputType="'text'"
         :name="'email'"
         :placeholder="'E-mail'"
         :labelClass="'auth-input'"
@@ -54,12 +54,11 @@ export default {
         login: this.login,
         password: this.password
       }
-      //console.log(await this.$mRestQuery.query('api/accounts/login/' ,form))
-      console.log(this)
-      
+      await this.$nuxt.$store.dispatch('users/auth', form)
+      this.$nuxt.$cookies.set('dateCheck', new Date().getTime())
     },
     showResetModal() {
-      this.$mModal.show(ModalReset); 
+      this.$mModal.show(ModalReset);
     }
 
   }

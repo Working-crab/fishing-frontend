@@ -16,7 +16,7 @@
       </div>
     </div>
     <ProductFilter />
-    <StuffsList :stuffs="stuffs" />
+    <StuffsList />
   </div>
 </template>
 
@@ -49,32 +49,6 @@ import StuffsList from '@/components/stuffs/StuffsList'
           'Jackall.png',
           'Shimano.png',
           'Sunline.png'
-        ],
-        stuffs: [
-          {
-            id: 1,
-            image: 'rod.png',
-            title: 'Удилище',
-            price: '7999',
-          },
-          {
-            id: 2,
-            image: 'rod.png',
-            title: 'Удилище',
-            price: '13999',
-          },
-          {
-            id: 3,
-            image: 'rod.png',
-            title: 'Удилище',
-            price: '13999',
-          },
-          {
-            id: 4,
-            image: 'rod.png',
-            title: 'Удилище',
-            price: '13999',
-          },
         ],
       }
     },

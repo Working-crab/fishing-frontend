@@ -9,6 +9,7 @@ export const state = () => ({
   productsPage: {},
   productsCount: 0,
   product: {},
+  pictures: {}
 })
 
 export const getters = {
@@ -20,6 +21,9 @@ export const getters = {
   },
   productsCount(state) {
     return state.productsCount;
+  },
+  productPictures(state) {
+    return state.pictures;
   },
 }
 
@@ -33,11 +37,15 @@ export const mutations = {
   SET_PRODUCTS_COUNT(state, productsCount) {
     state.productsCount = productsCount;
   },
+  SET_PRODUCT_PICTURES(state, pictures) {
+    state.pictures = pictures;
+  }
+
 }
 
 export const actions = {
   async getProductsPage({commit}, page) {
-    const PRODUCTS = 
+    const PRODUCTS =
     `{
       products(offset: ${page.start}, first: ${page.size}) {
         edges {
@@ -58,7 +66,34 @@ export const actions = {
       commit('SET_PRODUCTS_PAGE', response.data.products)
     } 
     catch (e) {
-      console.error(e.response)
+      console.error(e.response.data)
+    }
+  },
+  async getAdditionalPictures({commit}, id) {
+    const PRODUCTS =
+    `query {
+      products(id: ${id}){
+        edges {
+          node {
+            id
+            pictures {
+              edges {
+                node {
+                  id
+                  image
+                }
+              }
+            }
+          }
+        }
+      }
+    }`
+    try {
+      const response = await this.$mGQLquery(PRODUCTS)
+      commit('SET_PRODUCT_PICTURES', response.data.products.edges[0].node.pictures.edges)
+    } 
+    catch (e) {
+      console.error(e.response.data)
     }
   },
   async getProductsCount({commit}) {
@@ -77,7 +112,7 @@ export const actions = {
       commit('SET_PRODUCTS_COUNT', response.data.products)
     } 
     catch (e) {
-      console.error(e.response)
+      console.error(e.response.data)
     }
   },
 }

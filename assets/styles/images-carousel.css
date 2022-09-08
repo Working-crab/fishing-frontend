@@ -4,6 +4,7 @@
 
 .images-carousel-item {
     position: relative;
+    cursor: pointer;
     /* width: 100px!important;
     height: 100px!important; */
 }

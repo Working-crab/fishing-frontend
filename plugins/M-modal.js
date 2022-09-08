@@ -1,13 +1,12 @@
 import Vue from 'vue';
 import MaxModal from '@/components/Modal.vue';
+import Vuex from 'vuex'
 
 let currModalId = null
 
 Vue.use({
   install (App, options) {
 
-    // this.$modal.show(Modal, { title: 'Modal Title' } );
-    // this.$modal.show(Modal);
     let currModalId = null
     App.prototype.$mModal = {
       show(showComponent, componentProps = []) {
@@ -29,7 +28,6 @@ Vue.use({
             }
           })
         });
-
         document.body.appendChild(modal.$el);
         return {modal, modalId};
       },
@@ -42,7 +40,5 @@ Vue.use({
     }
 
     App.$mModal = App.prototype.$mModal;
-
-    // configure the app
   }
 });

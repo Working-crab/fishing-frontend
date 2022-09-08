@@ -1,7 +1,6 @@
-import Vue from 'vue';
-import MaxModal from '@/components/Modal.vue';
+import Constants from '@/config'
 
-const url = 'https://diwos.ru/api/graphql'; // ('NODE_ENV' == 'production') ? '/api/graphql' :
+const url = Constants.BASE_URL + '/api/graphql' //'https://diwos.ru/api/graphql'; // ('NODE_ENV' == 'production') ? '/api/graphql' :
 
 export default (context, inject) => {
 

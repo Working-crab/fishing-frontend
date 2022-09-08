@@ -45,8 +45,12 @@ export default {
     async handleFormSubmit() {
       //console.log(this.$store)
       console.log(this)
-      this.$mRestQuery('api/accounts/send-reset-password-link/', {login: this.email})
-      //const response = await this.$mRestQuery.query()
+      try {
+        this.$mRestQuery('api/accounts/send-reset-password-link/', {login: this.email})
+      }
+      catch (e) {
+        console.log('njn', e.response.data)
+      }
     }
   }
 }

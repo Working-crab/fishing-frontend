@@ -1,13 +1,17 @@
 <template>
   <div class="stuff-modal">
       <div class="stuff-modal-images">
-          <div class="stuff-modal-images-main">
-              <img :src="`https://diwos.ru/uploads/` + props.node.mainPicture.image" alt="" />
+        <transition name="fade">
+          <div v-if="load" class="stuff-modal-images-main">
+              <img :src="`${Constants.BASE_URL}uploads/` + currentImgData" alt="" />
           </div>
+        </transition>
           <client-only>
             <ImagesCarousel
+              v-if="productPictures.length > 1"
+              @changeImg="switchImg($event)"
               :classes="'stuff-modal-images-carousel'"
-              :images="images"
+              :images="productPictures"
             />
           </client-only>
       </div>
@@ -69,6 +73,9 @@
 
 <script>
 import StuffFooter from '@/components/stuffs/StuffFooter.vue'
+import Constants from '@/config'
+import {mapGetters} from 'vuex'
+
 export default {
   props: {
     classes: String,
@@ -79,33 +86,33 @@ export default {
   },
   data() {
     return {
-      images: [
-          {
-            id: 1,
-            image: this.props.node.mainPicture.image,
-            title: 'Удилище',
-            price: '7999',
-          },
-          {
-            id: 2,
-            image: this.props.node.mainPicture.image,
-            title: 'Удилище',
-            price: '13999',
-          },
-          {
-            id: 3,
-            image: this.props.node.mainPicture.image,
-            title: 'Удилище',
-            price: '13999',
-          },
-          {
-            id: 4,
-            image: this.props.node.mainPicture.image,
-            title: 'Удилище',
-            price: '13999',
-          },
-        ],
+      Constants: Constants,
+      currentImgData: null,
+      load: true
     }
   },
+  methods: {
+    switchImg(image) {
+      if(image !== this.currentImgData) {
+        this.load = false
+        setTimeout(() => this.load = true, 200)
+        this.currentImgData = image
+      }
+      
+    }
+  },
+  watch: {
+  },
+  computed: {
+    currentImg() {
+      return currentImgData
+    },
+    productPictures() {
+      return this.$nuxt.$store.getters['products/productPictures']
+    },
+  },
+  mounted() {
+    this.currentImgData = this.props.node.mainPicture.image
+  }
 }
 </script>

@@ -8,7 +8,6 @@
       <Stuffs />
       <nuxt-link to="/PassChange">К тестовой модалке</nuxt-link>
     </article>
-    <button @click="vivod">asdads</button>
   </div>
 </template>
 
@@ -29,8 +28,7 @@ export default {
     return {
     }
   },
-  created() {
-    //this.getProducts()
+  mounted() {
   },
   methods: {
     vivod() {

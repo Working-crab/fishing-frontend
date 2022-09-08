@@ -5,7 +5,8 @@
         <li v-for="stuff in products.edges" :key="stuff.node.id" class="stuffs-list-item">
             <div @click="showStuffInfoModal(stuff)" class="stuffs-list-info">
                 <div class="stuffs-list-info-image">
-                    <img :src="`https://diwos.ru/uploads/` + stuff.node.mainPicture.image" alt="" />
+                    <img v-if="stuff.node.mainPicture" :src="`${Constants.BASE_URL}uploads/` + stuff.node.mainPicture.image" alt="nety" />
+                    <img v-else src="@/assets/images/empty.png" alt="nety" />
                 </div>
                 <h3 class="stuffs-list-info-title">{{stuff.node.name}}</h3>
             </div>
@@ -16,7 +17,7 @@
       </ul>
       <ProgressSpinner class="progeress-spin" v-else />
     </transition>
-    <Paginator :first="startItemGql" :rows="rows" :totalRecords="totalItemsCount" @page="onPage($event)" />
+    <Paginator v-if="totalItemsCount > rows" :first="startItemGql" :rows="rows" :totalRecords="totalItemsCount" @page="onPage($event)" />
   </div>
 </template>
 
@@ -24,12 +25,11 @@
 import {mapActions, mapGetters} from 'vuex'
 import StuffFooter from '@/components/stuffs/StuffFooter.vue'
 import StuffModal from '@/components/stuffs/StuffModal.vue'
-import QueryProducts from '@/apollo/products.gql'
+import Constants from '@/config'
 
 export default {
   props: {
-      stuffs: Array,
-      parentClass: String
+    parentClass: String
   },
   components: {
       StuffFooter,
@@ -39,11 +39,14 @@ export default {
         loading: true,
         totalItemsCount: 0,
         currentPage: 0,
-        rows: 4,
+        rows: 2,
+        Constants: Constants
       }
   },
   methods: {
-    showStuffInfoModal(stuff){
+    async showStuffInfoModal(stuff){
+      await this.$nuxt.$store.dispatch('products/getAdditionalPictures', stuff.node.id)
+      //await 
       this.$mModal.show(StuffModal, stuff)
     },
     ...mapActions({
@@ -66,7 +69,6 @@ export default {
   async mounted() {
     await this.getProductsCount()
     this.totalItemsCount = this.productsCount.edges.length
- 
     if(this.$route.query.currentPage) {// если есть query
       this.currentPage = Number(this.$route.query.currentPage)
       await this.getProductsPage({start: this.startItemGql, size: this.rows})
@@ -81,6 +83,9 @@ export default {
   computed: {
     startItemGql() {
       return this.currentPage * this.rows
+    },
+    imgSrc(stuff) {
+      return `${Constants.BASE_URL}uploads/` + stuff.node.mainPicture.image
     },
     ...mapGetters({
       products: 'products/productsPage',

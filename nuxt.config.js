@@ -31,6 +31,9 @@ export default {
     { src: '@/plugins/M-gql.js', mode: 'client'},
     { src: '@/plugins/M-post-query.js', mode: 'client'},
   ],
+  router: {
+    middleware: ['checkAuth']
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
