@@ -1,8 +1,13 @@
+import ModalAuth from '@/components/modals/ModalAuth.vue'
+
 export default async function({store, app, redirect}) {
   let now = new Date().getTime()
-  if ( now - app.$cookies.get('dateCheck')  >= 300000) {
-    console.log('пришло в мидлвару', now,  app.$cookies.get('dateCheck'))
+  if(app.$cookies.get('isTokenTrue')) {
     await store.dispatch('users/checkAuth')
+    .catch( err => {
+      console.log(err)
+      //redirect('/index')
+    })
     app.$cookies.set('dateCheck', new Date().getTime())
   }
 }

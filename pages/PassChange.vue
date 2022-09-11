@@ -23,6 +23,7 @@
         :placeholder="'повторить пароль'"
         :labelClass="'auth-input'"
         />
+        <span class="error-placeholder">{{error}}</span> 
         <div class="reset-next-footer">
           <button type="submit" class="auth-footer-button button">Изменить пароль</button>
         </div>
@@ -42,19 +43,53 @@ export default {
       logo: '@/assets/images/logo.png',
       passsword: '',
       confirm_passsword: '',
+      error: '',
     }
   },
   methods: {
-    resetPass() {
-      console.log(this)
-      // if(this.passsword === this.confirm_passsword) {
-      //   //Отправить passsword на сервер
-      // }
-      // else {
-        
-      // }
+    async resetPass() {
+      console.log(this.$route)
       
-      //this.$mRestQuery()
+      const formReset =
+      {
+        "user_id": this.$route.query.user_id,
+        "timestamp": this.$route.query.timestamp,
+        "signature": this.$route.query.signature,
+        "password": this.passsword
+      }
+      if(this.passsword === this.confirm_passsword) {
+
+        const response = await this.$mRestQuery('api/accounts/reset-password/', formReset)
+        if(response?.statusText === 'OK') {
+          
+          console.log(response)
+        }
+        else {
+          if(response?.data?.password) {
+            this.error = 'password: '
+              response?.data?.password?.map(err => {
+              this.error += err
+            })
+          }
+          
+        }
+        // try {
+        //   const response = await this.$mRestQuery('api/accounts/reset-password/', formReset)
+        //   //this.$router.push('/')
+        //   console.log(response)
+        // }
+        // catch (e) {
+        //   console.log(response)
+        //   this.error = e?.response?.data.password
+        // }
+        
+        // if (response.data?.password?.length) {
+        //   this.error = response.data.password.join(' \n')
+        // }
+      }
+      else {
+        this.error = 'Пароли не совпаают'
+      }
     }
   }
 }
@@ -81,5 +116,9 @@ export default {
   justify-content: center;
   width: 100%;
   margin-top: auto;
+}
+
+.auth-footer-button {
+  margin-top: 10px;
 }
 </style>

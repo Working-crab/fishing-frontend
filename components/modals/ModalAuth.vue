@@ -56,11 +56,11 @@ export default {
       }
       await this.$nuxt.$store.dispatch('users/auth', form)
       this.$nuxt.$cookies.set('dateCheck', new Date().getTime())
+      this.$nuxt.$router.go(this.$nuxt.$router.currentRoute)
     },
     showResetModal() {
       this.$mModal.show(ModalReset);
     }
-
   }
 }
 </script>

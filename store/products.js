@@ -63,10 +63,18 @@ export const actions = {
     }`
     try {
       const response = await this.$mGQLquery(PRODUCTS)
-      commit('SET_PRODUCTS_PAGE', response.data.products)
-    } 
+      const products = response.data.products.edges.map((product) => {
+        return {
+          id: product.node.id,
+          name: product.node.name,
+          description: product.node.description,
+          mainPicture: product.node.mainPicture.image
+        }
+      });
+      commit('SET_PRODUCTS_PAGE', products)
+    }
     catch (e) {
-      console.error(e.response.data)
+      console.error(e.response?.data)
     }
   },
   async getAdditionalPictures({commit}, id) {
@@ -90,10 +98,16 @@ export const actions = {
     }`
     try {
       const response = await this.$mGQLquery(PRODUCTS)
-      commit('SET_PRODUCT_PICTURES', response.data.products.edges[0].node.pictures.edges)
+      const productPictures = response.data.products.edges[0].node.pictures.edges.map((product) => {
+        return {
+          id: product.node.id,
+          imageName: product.node.image
+        }
+      });
+      commit('SET_PRODUCT_PICTURES', productPictures)
     } 
     catch (e) {
-      console.error(e.response.data)
+      console.error(e.response?.data)
     }
   },
   async getProductsCount({commit}) {
@@ -110,9 +124,9 @@ export const actions = {
     try {
       const response = await this.$mGQLquery(productsValue)
       commit('SET_PRODUCTS_COUNT', response.data.products)
-    } 
+    }
     catch (e) {
-      console.error(e.response.data)
+      console.error(e.response?.data)
     }
   },
 }

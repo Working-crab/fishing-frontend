@@ -8,7 +8,7 @@
         v-swiper:mySwiper="swiperOptions"
       >
         <div class="swiper-wrapper">
-          <div class="swiper-slide swiper-slide-item" v-for="slide,index in sliderElements" :key="slide">
+          <div @click="showone" class="swiper-slide swiper-slide-item" v-for="slide,index in sliderElements" :key="slide">
             <img :id="index" :src="require(`@/assets/images/brands/${slide}`)" alt="brands">
           </div>
         </div>
@@ -32,8 +32,19 @@ import StuffsList from '@/components/stuffs/StuffsList'
       StuffsSort,
       StuffsList
     },
+    methods: {
+      showone() {
+        console.log(this.perView, document.body.clientWidth)
+      },
+    },
+    computed: {
+      // perView() {
+      //   return document.body.clientWidth || 1920
+      // }
+    },
     data () {
       return {
+        test: 0,
         swiperOptions: {
           loop: true,
           slidesPerView: 5,
@@ -41,7 +52,24 @@ import StuffsList from '@/components/stuffs/StuffsList'
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
-          }
+          },
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
+            },
+            425: {
+              slidesPerView: 2,
+            },
+            640: {
+              slidesPerView: 3,
+            },
+            768: {
+              slidesPerView: 4,
+            },
+            1245: {
+              slidesPerView: 5,
+            },
+          },
         },
         sliderElements: [
           'AbuGarcia.png',
@@ -51,8 +79,6 @@ import StuffsList from '@/components/stuffs/StuffsList'
           'Sunline.png'
         ],
       }
-    },
-    methods: {
     },
   }
 </script>

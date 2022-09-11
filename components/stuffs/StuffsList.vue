@@ -2,13 +2,13 @@
   <div class="stuff-list-container">
     <transition name="fade" mode="out-in">
       <ul v-if="loading" :class="`${parentClass} stuffs-list`">
-        <li v-for="stuff in products.edges" :key="stuff.node.id" class="stuffs-list-item">
+        <li v-for="stuff in products" :key="stuff.id" class="stuffs-list-item">
             <div @click="showStuffInfoModal(stuff)" class="stuffs-list-info">
                 <div class="stuffs-list-info-image">
-                    <img v-if="stuff.node.mainPicture" :src="`${Constants.BASE_URL}uploads/` + stuff.node.mainPicture.image" alt="nety" />
+                    <img v-if="stuff.mainPicture" :src="`${Constants.BASE_URL}uploads/` + stuff.mainPicture" alt="nety" />
                     <img v-else src="@/assets/images/empty.png" alt="nety" />
                 </div>
-                <h3 class="stuffs-list-info-title">{{stuff.node.name}}</h3>
+                <h3 class="stuffs-list-info-title">{{stuff.name}}</h3>
             </div>
             <StuffFooter
                 :stuff="stuff"
@@ -39,13 +39,13 @@ export default {
         loading: true,
         totalItemsCount: 0,
         currentPage: 0,
-        rows: 2,
+        rows: 10,
         Constants: Constants
       }
   },
   methods: {
     async showStuffInfoModal(stuff){
-      await this.$nuxt.$store.dispatch('products/getAdditionalPictures', stuff.node.id)
+      await this.$nuxt.$store.dispatch('products/getAdditionalPictures', stuff.id)
       //await 
       this.$mModal.show(StuffModal, stuff)
     },
@@ -68,7 +68,7 @@ export default {
 
   async mounted() {
     await this.getProductsCount()
-    this.totalItemsCount = this.productsCount.edges.length
+    this.totalItemsCount = this.productsCount?.edges?.length
     if(this.$route.query.currentPage) {// если есть query
       this.currentPage = Number(this.$route.query.currentPage)
       await this.getProductsPage({start: this.startItemGql, size: this.rows})
@@ -85,7 +85,7 @@ export default {
       return this.currentPage * this.rows
     },
     imgSrc(stuff) {
-      return `${Constants.BASE_URL}uploads/` + stuff.node.mainPicture.image
+      return `${Constants.BASE_URL}uploads/` + stuff.mainPicture
     },
     ...mapGetters({
       products: 'products/productsPage',
@@ -100,7 +100,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 82%;
+  min-height: 79%;
+  margin-right: 10px;
 }
 .progeress-spin {
   margin: auto;

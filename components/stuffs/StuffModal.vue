@@ -17,10 +17,10 @@
       </div>
       <div class="stuff-modal-info">
           <h2 class="stuff-modal-info-title">
-              {{props.node.name}}
+              {{props.name}}
           </h2>
           <p class="stuff-modal-info-descr">
-              {{this.props.node.description}}
+              {{this.props.description}}
           </p>
           <p class="stuff-modal-info-props">
               <span class="stuffs-prop">
@@ -112,7 +112,7 @@ export default {
     },
   },
   mounted() {
-    this.currentImgData = this.props.node.mainPicture.image
+    this.currentImgData = this.props.mainPicture
   }
 }
 </script>

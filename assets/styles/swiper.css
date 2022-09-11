@@ -55,6 +55,29 @@
     position: relative;
     margin-bottom: 20px;
 }
+@media screen and (max-width: 1245px) {
+  .swiper-container {
+    max-width: 714px;/*600px*/
+  }
+}
+
+@media screen and (max-width: 768px){
+  .swiper-container {
+    max-width: 554px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .swiper-container {
+    max-width: 407px;;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .swiper-container {
+    max-width: 228px;;
+  }
+}
 
 .swiper-slide-item {
     display: flex;

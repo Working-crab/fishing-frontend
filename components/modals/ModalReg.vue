@@ -50,11 +50,13 @@
                 name='repeat-password'
                 placeholder='Повторите пароль'
                 labelClass='reg-input'
-              />  
+              />
+              <span class="error-placeholder">{{error}}</span>             
               <div class="reg-footer">
                 <span @click="handleAuthLink" class="reg-footer-link">Есть аккаунт?</span>
                 <button class="reg-footer-button button">Регистрация</button>
               </div>
+
           </div>
       </form>
   </div>
@@ -77,6 +79,7 @@ export default {
       email: '',
       password: '',
       password_confirm: '',
+      error: '',
     }
   },
   methods: {
@@ -87,12 +90,11 @@ export default {
       this.$mModal.show(ModalAuth)
     },
     async handleFormSubmit() {
-      console.log(this)
       if(this.password != this.password_confirm) {
         alert('Пароли не совпадают')
       }
       else {
-        const form = {
+        const regForm = {
           first_name: this.first_name,
           last_name: this.last_name,
           phone: this.phone,
@@ -101,10 +103,20 @@ export default {
           password: this.password,
           password_confirm: this.password_confirm,
         }
-        console.log(this.$mRestQuery.query('api/accounts/register/' ,form))
-        
+        const response = await this.$mRestQuery('api/accounts/register/' ,regForm)
+
+        if (response.data?.password?.length) {
+          this.error = response.data.password.join(' \n')
+        }
       }
     }
   }
 }
 </script>
+
+<style>
+.error-placeholder {
+  color: red;
+  font-size: 13px;
+}
+</style>

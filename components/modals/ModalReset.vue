@@ -43,8 +43,6 @@ export default {
       this.$mModal.show(ModalAuth)
     },
     async handleFormSubmit() {
-      //console.log(this.$store)
-      console.log(this)
       try {
         this.$mRestQuery('api/accounts/send-reset-password-link/', {login: this.email})
       }

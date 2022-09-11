@@ -17,7 +17,7 @@ export default {
 <style scoped>
 .type-container {
   width: 100%;
-  height: 200px;
+  height: 130px;
   border-radius: 5px;
   padding: 7px;
   padding-top: 2px;

@@ -1,6 +1,6 @@
 <template>
   <div class="filter-container">
-    <div v-for="filter in filters" :key="'filter_' + filter.enabled + filter.id">
+    <div class="filter-container-item" v-for="filter in filters" :key="'filter_' + filter.enabled + filter.id">
       <span 
         :class="filter.enabled ? 'selected' : ''"
         @click="filter.enabled = !filter.enabled"
@@ -55,6 +55,10 @@ export default {
   width: 99%;
   height: 45px;
 }
+.filter-container-item {
+  text-align: center;
+  margin: 10px;
+}
 
 span {
   font-size: 17px;
@@ -67,9 +71,9 @@ span:hover {
 span:focus {
   color: red;
 }
-span:nth-child(1) {
+/* span:nth-child(1) {
  margin-left: 20px;
-}
+} */
 
 span + span {
   margin-left: 40px;

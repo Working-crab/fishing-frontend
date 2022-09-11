@@ -4,6 +4,7 @@ export const state = () => ({
   currentUser: '',
   errors: '',
   response: '',
+  test: {},
 })
 
 export const getters = {
@@ -12,12 +13,21 @@ export const getters = {
   },
   isUserAuthorize() {
     return null
+  },
+  test(state) {
+    return state.test
   }
 }
 
 export const mutations = {
   SET_CURRENT_USER(state, currentUser) {
     state.currentUser = currentUser;
+  },
+  SET_TOKEN_STATUS_TRUE(state) {
+    this.$cookies.set('isTokenTrue', true);
+  },
+  SET_TOKEN_STATUS_FALSE(state) {
+    this.$cookies.set('isTokenTrue', false);
   },
   SET_RESPONSE(state, response) {
     state.response = response;
@@ -40,13 +50,13 @@ export const actions = {
     // }
   },
   async auth({ commit }, authData) {
-    const response = await this.$mRestQuery('api/accounts/login/', authData)
+    const response = await this.$mRestQuery('api/accounts/login/',authData)
     if(response.statusText === 'OK') {
       console.log('норм', response)
-      commit('SET_CURRENT_USER', response)
+      commit('SET_TOKEN_STATUS_TRUE')
     }
     else {
-      commit('SET_ERRORS', response)
+      commit('SET_TOKEN_STATUS_FALSE')
       console.log('Не норм', response)
     }
   },
@@ -63,21 +73,24 @@ export const actions = {
     // }
   },
   async checkAuth({ commit }) {
-    this.$axios.$get('http://127.0.0.1:8000/api/accounts/profile/', {withCredentials: false})
-    .then(function (response) {
-      console.log(response);
+    var response = {}
+    await this.$axios.get('http://127.0.0.1:8000/api/accounts/profile/', {withCredentials: true})
+    .then(res => {
+      commit('SET_CURRENT_USER', res.data)
+      //commit('SET_TOKEN_STATUS_TRUE') 
     })
-    .catch(function (err) {
-      console.log(err);
+    .catch( err => {
+      console.log(err)
+      commit('SET_TOKEN_STATUS_FALSE')
     })
-    // const response = await this.$mRestQuery.query('api/accounts/send-reset-password-link/', login)
-    // if(response.ok) {
-    //   commit('SET_RESPONSE', response)
-    //   console.log("Норм")
+    // const response = await this.$mRestQuery('http://127.0.0.1:8000/api/accounts/profile/')
+    // if(response.statusText === 'OK') {
+    //   console.log('норм', response)
+    //   commit('SET_TOKEN_STATUS_TRUE')
     // }
     // else {
-    //   commit('SET_ERRORS', response)
-    //   console.log('Не норм')
+    //   commit('SET_TOKEN_STATUS_FALSE')
+    //   console.log('Не норм', response)
     // }
   }
 }

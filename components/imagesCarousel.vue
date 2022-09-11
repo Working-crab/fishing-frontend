@@ -8,7 +8,7 @@
     >
       <div :class="`${classes} swiper-wrapper images-carousel`">
         <div class="swiper-slide images-carousel-item" v-for="image, index in images" :key="index">
-          <img @click="switchImg(image)" :src="`${Constants.BASE_URL}uploads/` + image.node.image" alt="brands">
+          <img @click="switchImg(image)" :src="`${Constants.BASE_URL}uploads/` + image.imageName" alt="brands">
         </div>
       </div>
     </div>
@@ -31,14 +31,25 @@ export default {
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
-        }
+        },
+        breakpoints: {
+            320: {
+              slidesPerView: 1,
+            },
+            425: {
+              slidesPerView: 2,
+            },
+            640: {
+              slidesPerView: 3,
+            },
+          },
       },
       Constants: Constants
     }
   },
   methods: {
     switchImg (image) {
-      this.$emit('changeImg', image.node.image)
+      this.$emit('changeImg', image.imageName)
     },
   },
 }

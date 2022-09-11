@@ -27,7 +27,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s ease;
 }
@@ -61,7 +61,14 @@ export default {
 .modal-body {
   position: absolute;
   z-index: 103;
-
+  padding: 10px;
 }
-
+ @media(max-width: 1024px) {
+  .modal-body {
+    margin: auto;
+    position: static;
+    z-index: 103;
+    padding: 10px;
+  }
+ }
 </style>

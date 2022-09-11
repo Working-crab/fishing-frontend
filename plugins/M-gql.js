@@ -18,9 +18,14 @@ export default (context, inject) => {
       data: JSON.stringify(mGQLquery),
     };
   
-    const result = await context.$axios(axiosQuery);
-  
-    return result.data;
+    try {
+      const response = await context.$axios(axiosQuery);
+      return response.data;
+    } catch (error) {
+      console.error('mGQLquery error: ', error.response?.data);
+      return false;
+    }
+
   }
   
   // const resultData = mGQLquery(`

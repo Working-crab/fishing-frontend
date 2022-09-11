@@ -6,7 +6,6 @@
         <StuffsSort />
       </div>
       <Stuffs />
-      <nuxt-link to="/PassChange">К тестовой модалке</nuxt-link>
     </article>
   </div>
 </template>
@@ -31,9 +30,14 @@ export default {
   mounted() {
   },
   methods: {
-    vivod() {
-      console.log(this)
+    show() {
+      this.$store.dispatch('users/checkAuth')
     }
+  },
+  computed: {
+    ...mapGetters({
+      currentUser: 'users/currentUser'
+    })
   }
 }
 </script>
@@ -43,5 +47,12 @@ export default {
   max-width: 300px;
   width: 100%;
 }
+
+@media screen and (max-width: 1024px) {
+  .staff-menu-container {
+    display: none;
+  }
+}
+
 
 </style>

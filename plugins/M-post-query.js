@@ -3,62 +3,40 @@ import MaxModal from '@/components/Modal.vue';
 import Constants from '@/config.js'
 
 
-
-
-// async function baseAxiosQuery (options) {
-    
-//   try {
-//     const result = await context.$axios(options);
-//   }
-//   catch (err){
-//     console.log(err.response.data)
-//   }
-//   return result;
-// }
-
 export default (context, inject) => {
-
-  let errorStor = ''
 
   async function baseAxiosQuery (options) {
     try {
       const result = await context.$axios(options);
-      return  result //{data: result, status: 'ок'};
+      return result
     }
-    catch (err){
-      return err.response.data//;{data: err.response.data, status: 'err'}
+    catch (err){ 
+      return err.response
     }
   }
 
-  // function baseAxiosQuery (options) {
-  //   const result = context.$axios(options)
-  //   .then((response) => {
-  //   })
-  //   .catch(error => {
-  //     errorStor = error.response.data
-  //   })
-  //   return result
-  // }
-
   async function mRestQuery (apiUrl, data = undefined,  options = {}) {
-    
-    let csrftoken = ''; 
 
-    if (!options.nocsrf) {
-      csrftoken = await getCsrftoken();
+    let csrftoken_query = {}
+    let csrftoken = context.app.$cookies.get('csrftoken')
+
+    if (!csrftoken) {
+      csrftoken_query = await getCsrftoken()
+      csrftoken = context.app.$cookies.get('csrftoken')
     }
 
     if (!csrftoken) {
       console.error('Not able to get csrf token');
-      return;
+      return csrftoken_query;
     }
 
     const mainOptions = {
+      withCredentials: true,
       url: Constants.BASE_URL + apiUrl,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-csrftoken': csrftoken
+        'x-csrftoken': context.app.$cookies.get('csrftoken')
       },
       data: data ? JSON.stringify(data) : undefined,
     };
@@ -71,20 +49,21 @@ export default (context, inject) => {
     let cookie = context.app.$cookies.get('csrftoken')
     if(!cookie) {
       const options = {
+        withCredentials: true,
         url: Constants.BASE_URL + 'api/csrftoken/',
         method: 'GET',
       }
-      await baseAxiosQuery(options)
+      let result = await baseAxiosQuery(options)
       cookie = context.app.$cookies.get('csrftoken')
-      return cookie
+      return result
     }
-    return cookie
+    //return cookie
   }
 
   Vue.use({
     install (App, options) {
-      App.prototype.$mRestQuery = function (apiUrl, data = undefined,  options = {}) {
-        mRestQuery(apiUrl, data,  options)
+      App.prototype.$mRestQuery = async function (apiUrl, data = undefined,  options = {}) {
+        return await mRestQuery(apiUrl, data,  options)
       } 
       App.$mRestQuery = App.prototype.$mRestQuery;
     }
