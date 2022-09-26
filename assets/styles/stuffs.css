@@ -152,21 +152,42 @@ span + .stuffs-sort-input {
 }
 @media screen and (max-width: 1245px) {
   .stuffs-list {
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
+    display: flex;
+    grid-gap: 25px;
     gap: 25px;
+    flex-wrap: wrap;
+    width: 625px;
+    margin: auto;
   }
 }
-@media screen and (max-width: 625px) {
+@media screen and (max-width: 768px) {
   .stuffs-list {
-    grid-template-columns: repeat(1, 1fr);
-    justify-items: center;
-    gap: 25px;
+    width: 300px;
   }
 }
 
 .stuffs-list--favorites { 
   grid-template-columns: repeat(4, 1fr);
+}
+@media screen and (max-width: 1300px) {
+  .stuffs-list--favorites {
+    display: flex;
+    grid-gap: 25px;
+    gap: 25px;
+    flex-wrap: wrap;
+    width: 950px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .stuffs-list--favorites {
+    width: 625px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .stuffs-list--favorites {
+    width: 300px;
+  }
 }
 
 .stuffs-list-item {

@@ -61,7 +61,7 @@ export default {
 
         const response = await this.$mRestQuery('api/accounts/reset-password/', formReset)
         if(response?.statusText === 'OK') {
-          
+          this.$router.push('/')
           console.log(response)
         }
         else {

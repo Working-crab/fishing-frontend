@@ -144,7 +144,7 @@ li {
   display: flex;
   width: 100%;
   align-items: center;
-
+  justify-content: space-between;
 }
 @media screen and (max-width: 1024px) {
   .header-nav-container {

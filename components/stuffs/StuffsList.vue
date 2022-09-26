@@ -46,7 +46,6 @@ export default {
   methods: {
     async showStuffInfoModal(stuff){
       await this.$nuxt.$store.dispatch('products/getAdditionalPictures', stuff.id)
-      //await 
       this.$mModal.show(StuffModal, stuff)
     },
     ...mapActions({
@@ -84,9 +83,6 @@ export default {
     startItemGql() {
       return this.currentPage * this.rows
     },
-    imgSrc(stuff) {
-      return `${Constants.BASE_URL}uploads/` + stuff.mainPicture
-    },
     ...mapGetters({
       products: 'products/productsPage',
       productsCount: 'products/productsCount'
@@ -101,7 +97,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   min-height: 79%;
-  margin-right: 10px;
 }
 .progeress-spin {
   margin: auto;

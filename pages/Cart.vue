@@ -3,9 +3,11 @@
     <h1>Cart</h1>
     <article class="favorites">
         <header class="favorites-header">
-            <h2 class="favorites-header-title">Позиций в корзине: {{ stuffs.length }}</h2>
+          <client-only>
+            <h2 class="favorites-header-title">Позиций в корзине: {{ cartItems.length }}</h2>
+          </client-only>
         </header>
-        <StuffsList :parentClass="`stuffs-list--favorites`" :stuffs="stuffs" />
+        <StuffsList :parentClass="`stuffs-list--favorites`" />
     </article>
     <h1>Итого: {{ total }}</h1>
   </div>
@@ -13,6 +15,7 @@
 
 <script>
 import StuffsList from '@/components/stuffs/StuffsList'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   components: {
@@ -20,48 +23,26 @@ export default {
   },
   data() {
     return {
-      stuffs: [
-        {
-          id: 1,
-          image: 'rod.png',
-          title: 'Удилище',
-          price: '7999',
-        },
-        {
-          id: 2,
-          image: 'rod.png',
-          title: 'Удилище',
-          price: '13999',
-        },
-        {
-          id: 3,
-          image: 'rod.png',
-          title: 'Удилище',
-          price: '13999',
-        },
-        {
-          id: 4,
-          image: 'rod.png',
-          title: 'Удилище',
-          price: '13999',
-        },
-        {
-          id: 5,
-          image: 'rod.png',
-          title: 'Удилище',
-          price: '13999',
-        },
-      ]
+      stuffs: 0
     }
   },
   methods: {
+    ...mapActions({
+      getCartPage: 'cart/getCartPage'
+    })
   },
   computed: {
     total() {
-      return this.stuffs.reduce((total, stuff) => {
-        return total + parseInt(stuff.price)
+      return this.cartItems.reduce((total, stuff) => {
+        return total + parseInt(stuff.product.formatted_price)
       }, 0)
-    }
+    },
+    ...mapGetters({
+      cartItems: 'cart/cartItems'
+    })
+  },
+  async mounted() {
+    await this.getCartPage()
   }
 }
 </script>

@@ -123,6 +123,13 @@ h1, h2, h3, h4, h5, h6, ul, li, ol, p, body {
   opacity: 0;
 }
 
+/* .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s ease;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+} */
+
 .modal-mask {
   position: fixed;
   top: 0;

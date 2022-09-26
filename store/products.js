@@ -63,18 +63,19 @@ export const actions = {
     }`
     try {
       const response = await this.$mGQLquery(PRODUCTS)
-      const products = response.data.products.edges.map((product) => {
+      const products = await response.data.products.edges.map((product) => {
         return {
           id: product.node.id,
           name: product.node.name,
           description: product.node.description,
-          mainPicture: product.node.mainPicture.image
+          mainPicture: product.node.mainPicture?.image
         }
       });
       commit('SET_PRODUCTS_PAGE', products)
     }
     catch (e) {
-      console.error(e.response?.data)
+      console.log(e)
+      console.error(e?.response?.data)
     }
   },
   async getAdditionalPictures({commit}, id) {

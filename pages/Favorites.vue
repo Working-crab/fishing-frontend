@@ -75,9 +75,4 @@ export default {
     font-weight: 600;
     font-size: 18px;
   }
-
-  .stuffs-list--favorites{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr)!important;
-  }
 </style>

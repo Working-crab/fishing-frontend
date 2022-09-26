@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-container">
+  <div class="swiper-container swiper-container-carousel">
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
     <div
@@ -36,10 +36,10 @@ export default {
             320: {
               slidesPerView: 1,
             },
-            425: {
+            474: {
               slidesPerView: 2,
             },
-            640: {
+            545 : {
               slidesPerView: 3,
             },
           },

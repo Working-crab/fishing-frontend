@@ -1,6 +1,6 @@
 <template>
   <div class="stuffs-wrapper">
-    <div class="swiper-container">
+    <div class="swiper-container swiper-container-brands">
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
       <div
@@ -57,13 +57,13 @@ import StuffsList from '@/components/stuffs/StuffsList'
             320: {
               slidesPerView: 1,
             },
-            425: {
+            426: {
               slidesPerView: 2,
             },
             640: {
               slidesPerView: 3,
             },
-            768: {
+            769: {
               slidesPerView: 4,
             },
             1245: {
