@@ -27,7 +27,7 @@
                   <strong class="stuffs-prop-title">
                     <span>{{property.nameProp}}:</span>
                   </strong>
-                  <p class="stuffs-prop-value">{{property.numValue + property.stringValue}}</p>
+                  <p class="stuffs-prop-value">{{numValuee(property.numValue) + property.stringValue}}</p>
               </span>
           </p>
           <div class="stuff-modal-info-rating rating">
@@ -99,10 +99,12 @@ export default {
         setTimeout(() => this.load = true, 200)
         this.currentImgData = image
       }
-      
+    },
+    numValuee(val) {
+      let newnumber = parseInt(val.split(".")[0]);
+      console.log(newnumber)
+      return newnumber
     }
-  },
-  watch: {
   },
   computed: {
     currentImg() {
