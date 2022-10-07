@@ -62,6 +62,7 @@ export default {
   position: absolute;
   z-index: 103;
   padding: 10px;
+  min-width: 1000px;
 }
  @media(max-width: 1024px) {
   .modal-body {
@@ -69,6 +70,7 @@ export default {
     position: static;
     z-index: 103;
     padding: 10px;
+    min-width: initial;
   }
  }
 </style>

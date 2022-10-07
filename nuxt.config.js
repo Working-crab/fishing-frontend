@@ -30,6 +30,7 @@ export default {
     { src: '@/plugins/M-modal.js', mode: 'client'},
     { src: '@/plugins/M-gql.js', mode: 'client'},
     { src: '@/plugins/M-post-query.js', mode: 'client'},
+    { src: '@/plugins/mixins', mode: 'client'},
   ],
   router: {
     middleware: ['checkAuth']

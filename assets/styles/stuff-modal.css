@@ -107,6 +107,8 @@
 
 .stuff-modal-info-props {
   margin: 5px 0;
+  display: flex;
+  flex-direction: column;
     /* smth */
 }
 

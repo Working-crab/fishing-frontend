@@ -7,19 +7,19 @@
             <h2 class="favorites-header-title">Позиций в корзине: {{ cartItems.length }}</h2>
           </client-only>
         </header>
-        <StuffsList :parentClass="`stuffs-list--favorites`" />
+        <CartList :parentClass="`stuffs-list--favorites`" />
     </article>
     <h1>Итого: {{ total }}</h1>
   </div>
 </template>
 
 <script>
-import StuffsList from '@/components/stuffs/StuffsList'
+import CartList from '@/components/cart/CartList'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   components: {
-    StuffsList
+    CartList
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
   computed: {
     total() {
       return this.cartItems.reduce((total, stuff) => {
-        return total + parseInt(stuff.product.formatted_price)
+        return total + parseInt(stuff.formatted_price) * stuff.quantity
       }, 0)
     },
     ...mapGetters({

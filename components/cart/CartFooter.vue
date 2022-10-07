@@ -6,7 +6,7 @@
             </svg>
         </button>
         <strong class="stuffs-footer-price">
-            <span>{{priceFormat(stuff?.price ?? 0) ?? 'Нет в наличии'}}</span>
+            <span>{{priceFormat()}}</span>
         </strong>
         <button @click="putInCart" class="stuffs-footer-button cart-button button">
             <svg viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,24 +20,36 @@
 export default {
   props: {
     stuff: Object,
+    quantity: {
+      type: Number,
+      default: 1
+    },
     classes: String
   },
   data() {
     return {
+      countt: 0
     }
+  },
+  mounted() {
+    
   },
   methods: {
     priceFormat() {
       let arr = this.stuff.formatted_price.split(',')
-      return arr[0] + 'р'
+      return arr[0] * this.stuff.quantity + 'р'
     },
     addToFaivor() {
       if (this.$cookies) {
 
       }
     },
-    putInCart() {
-      this.$nuxt.$store.dispatch('cart/addItemToCard', {product_id: this.stuff.id, quantity: 1})
+    putInCart(quantity) {
+      let props = {
+        product_id: this.stuff.id,
+        quantity: 1
+      }
+      this.$nuxt.$store.dispatch('cart/addItemToCard', props)
       // if(this.$nuxt.$cookies.get('isTokenTrue')) {
       //   const cartProduct = [{ 
       //     "product_id": 1,

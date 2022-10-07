@@ -352,6 +352,7 @@ span + .stuffs-sort-input {
     margin: 0 10px;
     cursor: pointer;
     text-align: center;
+    padding: 10px;
 }
 
 .stuffs-footer-price span {

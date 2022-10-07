@@ -53,6 +53,7 @@ export const actions = {
             id
             description
             name
+            formattedPrice
             mainPicture {
               id
               image
@@ -68,7 +69,9 @@ export const actions = {
           id: product.node.id,
           name: product.node.name,
           description: product.node.description,
-          mainPicture: product.node.mainPicture?.image
+          mainPicture: product.node.mainPicture?.image,
+          formatted_price: product.node.formattedPrice,
+          propertys: []
         }
       });
       commit('SET_PRODUCTS_PAGE', products)
@@ -109,6 +112,40 @@ export const actions = {
     } 
     catch (e) {
       console.error(e.response?.data)
+    }
+  },
+  async getProductItemInfo({commit}, productId) {
+    const PRODUCTS_INF =
+    `query {
+      productProperties(product_Id: ${productId}){
+        edges{
+          node{
+            property{
+              name
+            }
+            stringValue
+            numValue
+          }
+        }
+      }
+    }`
+    try {
+      const response = await this.$mGQLquery(PRODUCTS_INF)
+      const CartInfo = response.data.productProperties.edges.map((property) => {
+        return {
+          numValue: property.node.numValue,
+          stringValue: property.node.stringValue,
+          nameProp: property.node.property.name
+        }
+      });
+      this.getters['products/productsPage'].map((cartItem) => {
+        if(cartItem.id === productId) {
+          Object.assign(cartItem.propertys, CartInfo)
+        }
+      })
+    } 
+    catch (e) {
+      console.error(e)
     }
   },
   async getProductsCount({commit}) {

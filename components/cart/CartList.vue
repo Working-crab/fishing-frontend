@@ -2,7 +2,7 @@
   <div class="stuff-list-container">
     <transition name="fade" mode="out-in">
       <ul v-if="loading" :class="`${parentClass} stuffs-list`">
-        <li v-for="stuff in products" :key="stuff.id" class="stuffs-list-item">
+        <li v-for="stuff in cartItems" :key="stuff.id" class="stuffs-list-item">
             <div @click="showStuffInfoModal(stuff)" class="stuffs-list-info">
                 <div class="stuffs-list-info-image">
                     <img v-if="stuff.mainPicture" :src="`${Constants.BASE_URL}uploads/` + stuff.mainPicture" alt="nety" />
@@ -10,7 +10,8 @@
                 </div>
                 <h3 class="stuffs-list-info-title">{{stuff.name}}</h3>
             </div>
-            <StuffFooter
+            <ChooserValue :stuff="stuff" />
+            <CartFooter
                 :stuff="stuff"
             />
         </li>
@@ -23,8 +24,9 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
-import StuffFooter from '@/components/stuffs/StuffFooter.vue'
+import CartFooter from '@/components/cart/CartFooter.vue'
 import StuffModal from '@/components/stuffs/StuffModal.vue'
+import ChooserValue from '@/components/ChooserValue.vue'
 import Constants from '@/config'
 
 export default {
@@ -32,12 +34,12 @@ export default {
     parentClass: String
   },
   components: {
-      StuffFooter,
+      CartFooter,ChooserValue
   },
   data() {
       return {
         loading: true,
-        totalItemsCount: 0,
+        totalItemsCount: 3,
         currentPage: 0,
         rows: 10,
         Constants: Constants
@@ -56,8 +58,8 @@ export default {
       this.$mModal.show(StuffModal, stuff)
     },
     ...mapActions({
-      getProductsPage: 'products/getProductsPage',
-      getProductsCount: 'products/getProductsCount'
+      getCartPage: 'cart/getCartPage',
+      //getProductsCount: 'products/getProductsCount'
     }),
     async onPage(event) {
       if (this.currentPage != event.page) {
@@ -66,24 +68,24 @@ export default {
         localStorage.curProductPage = event.page
         this.currentPage = event.page
 
-        await this.getProductsPage({start: this.startItemGql, size: this.rows})
+        await this.getCartPage({start: this.startItemGql, size: this.rows})
         this.loading = true
       }
     },
   },
 
   async mounted() {
-    await this.getProductsCount()
-    this.totalItemsCount = this.productsCount?.edges?.length
+    // await this.getProductsCount()
+    // this.totalItemsCount = this.productsCount?.edges?.length
     if(this.$route.query.currentPage) {// если есть query
       this.currentPage = Number(this.$route.query.currentPage)
-      await this.getProductsPage({start: this.startItemGql, size: this.rows})
+      await this.getCartPage({start: this.startItemGql, size: this.rows})
     }
     if(!this.$route.query.currentPage && localStorage.curProductPage){// если нет query
       this.currentPage = localStorage.curProductPage
-      await this.getProductsPage({start: this.startItemGql, size: this.rows})
+      await this.getCartPage({start: this.startItemGql, size: this.rows})
     }
-    await this.getProductsPage({start: this.startItemGql, size: this.rows})// если нет нихуя
+    await this.getCartPage({start: this.startItemGql, size: this.rows})// если нет нихуя
   },
 
   computed: {
@@ -91,8 +93,8 @@ export default {
       return this.currentPage * this.rows
     },
     ...mapGetters({
-      products: 'products/productsPage',
-      productsCount: 'products/productsCount'
+      cartItems: 'cart/cartItems',
+      // productsCount: 'products/productsCount'
     })
   }
 }

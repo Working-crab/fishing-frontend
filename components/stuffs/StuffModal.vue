@@ -3,7 +3,7 @@
       <div class="stuff-modal-images">
         <transition name="fade">
           <div v-if="load" class="stuff-modal-images-main">
-              <img :src="`${Constants.BASE_URL}uploads/` + currentImgData" alt="" />
+              <img :src="`${Constants.BASE_URL}uploads/` + currentImgData" alt="mainModalImg" />
           </div>
         </transition>
           <client-only>
@@ -23,11 +23,11 @@
               {{this.props.description}}
           </p>
           <p class="stuff-modal-info-props">
-              <span class="stuffs-prop">
+              <span v-for="property, index in props.propertys" :key="index" class="stuffs-prop">
                   <strong class="stuffs-prop-title">
-                      Свойство <sub class="stuffs-prop-dimension">(изм)</sub>: 
+                    <span>{{property.nameProp}}:</span>
                   </strong>
-                  <p class="stuffs-prop-value">Значение</p>
+                  <p class="stuffs-prop-value">{{property.numValue + property.stringValue}}</p>
               </span>
           </p>
           <div class="stuff-modal-info-rating rating">
@@ -66,6 +66,7 @@
           </div>
           <StuffFooter
               :classes="`stuff-modal-info-footer`"
+              :stuff="props"
           />
       </div>
   </div>
@@ -113,6 +114,14 @@ export default {
   },
   mounted() {
     this.currentImgData = this.props.mainPicture
+    if(this.$nuxt.$route.name == 'Cart') {
+      this.$nuxt.$store.dispatch('cart/getCartItemInfo', this.props.id)
+    }
+    
+    if(this.$nuxt.$route.name == 'index') {
+      this.$nuxt.$store.dispatch('products/getProductItemInfo', this.props.id)
+    }
+    console.log(this.props)
   }
 }
 </script>
