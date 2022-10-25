@@ -1,9 +1,9 @@
 <template>
   <div class="profile">
-    <ProfileUser />
-    <ProfileOrder />
-    <ProfileFavorites />
-    <ProfileOrdersHistory />
+    <ProfileUser @click="pushToCart"/>
+    <ProfileOrder @click="pushToCart"/>
+    <ProfileFavorites @click="pushToCart"/>
+    <ProfileOrdersHistory @click="pushToCart"/>
   </div>
 </template>
 
@@ -25,14 +25,17 @@ export default {
   //   }),
     
   // },
-  // methods: {
-  //   ...mapActions({
-  //     getProducts: 'products/getProducts'
-  //   }),
-  //   getThis() {
-  //     this.getProducts()
-  //   }
-  // },
+  methods: {
+    pushToCart() {
+      this.$router.push('/')
+    }
+    // ...mapActions({
+    //   getProducts: 'products/getProducts'
+    // }),
+    // getThis() {
+    //   this.getProducts()
+    // }
+  },
 }
 </script>
 

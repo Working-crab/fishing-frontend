@@ -1,5 +1,5 @@
 <template>
-  <article class="profile-order profile-block">
+  <article @click="$router.push('/Cart')" class="profile-order profile-block">
     <div class="profile-order-logo">
       <img src="@/assets/images/Order.svg" alt="">
     </div>
@@ -25,6 +25,7 @@ export default {
   border: 2px solid #D2D2D2;
   border-radius: 100%;
   margin-bottom: 15px;
+  
 }
 
 .profile-order-title {
@@ -38,5 +39,8 @@ export default {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 14px;
   font-weight: 500;
+}
+.profile-block {
+  cursor: pointer;
 }
 </style>

@@ -31,14 +31,14 @@
                               <img src="@/assets/images/Person.svg" alt="">
                               <p class="header-nav-list-text">Войти</p>
                           </div>
-                          <div v-else @click="showModal" class="header-nav-list-link link">
+                          <div v-else @click="pushToProfile" class="header-nav-list-link link">
+                            <img src="@/assets/images/Person.svg" alt="">
                             {{currentUser.username}}
-                          </div> 
+                          </div>
                       </li>
                   </ul>
               </nav>
             </div>
-            
         </div>
     </header>
 </template>
@@ -53,6 +53,9 @@ export default {
     methods: {
       showModal() {
         this.$mModal.show(ModalAuth)
+      },
+      pushToProfile() {
+        this.$router.push('/users/Profile/')
       }
     },
     computed: {

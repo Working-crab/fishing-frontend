@@ -16,6 +16,9 @@ export const getters = {
   },
   test(state) {
     return state.test
+  },
+  isTokenTrue() {
+    this.$cookies.get('isTokenTrue');
   }
 }
 

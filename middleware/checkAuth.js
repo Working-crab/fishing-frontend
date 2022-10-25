@@ -6,7 +6,7 @@ export default async function({store, app, redirect}) {
     await store.dispatch('users/checkAuth')
     .catch( err => {
       console.log(err)
-      //redirect('/index')
+      //redirect('/')
     })
     app.$cookies.set('dateCheck', new Date().getTime())
   }

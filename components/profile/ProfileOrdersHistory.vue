@@ -10,10 +10,10 @@
 
 <script>
 export default {
-  
+  methods: {
+  }
 }
 </script>
-
 
 <style scoped>
   .profile-order-history-logo {

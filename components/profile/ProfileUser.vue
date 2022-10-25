@@ -6,16 +6,16 @@
       </div>
       <div class="user-info">
         <h2 class="user-info-initials">
-          Иванов Иван Иванович
+          {{currentUser.first_name + " "+ currentUser.last_name}}
         </h2>
         <div class="user-contacts">
           <p class="user-contacts-item">
             <img src="@/assets/images/Mail.svg" alt="">
-            <span>example@fishing.ru</span>
+            <span>{{currentUser.email}}</span>
           </p>
           <p class="user-contacts-item">
             <img src="@/assets/images/Phone.svg" alt="">
-            <span>+7(904)964-22-24</span>
+            <span>{{currentUser.phone}}</span>
           </p>
         </div>
       </div>
@@ -25,7 +25,7 @@
         <img src="@/assets/images/Lock.svg" alt="">
         <span>Пароль был изменён 3 дня назад</span>
       </div>
-      <button class="user-footer-button button">
+      <button @click="exit" class="user-footer-button button">
         <span>Выход</span>
       </button>
     </footer>
@@ -33,8 +33,24 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
-  
+  methods: {
+    async exit() {
+      //await this.$cookies.set('isTokenTrue', false)
+      await this.$nuxt.$store.dispatch('users/auth','')
+      await window.location.assign('/')
+    }
+  },
+  computed: {
+    ...mapGetters({
+      currentUser: 'users/currentUser'
+    })
+    
+  },
+  mounted() {
+    console.log(this.currentUser)
+  }
 }
 </script>
 
@@ -121,6 +137,9 @@ export default {
   border: 1.5px solid #2D75E1;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-footer-button:hover {

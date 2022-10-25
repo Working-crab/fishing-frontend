@@ -102,7 +102,6 @@ export default {
     },
     numValuee(val) {
       let newnumber = parseInt(val.split(".")[0]);
-      console.log(newnumber)
       return newnumber
     }
   },
@@ -123,7 +122,6 @@ export default {
     if(this.$nuxt.$route.name == 'index') {
       this.$nuxt.$store.dispatch('products/getProductItemInfo', this.props.id)
     }
-    console.log(this.props)
   }
 }
 </script>
